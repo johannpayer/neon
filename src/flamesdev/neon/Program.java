@@ -5,6 +5,6 @@ import flamesdev.neon.critical.NeonEngine;
 
 public class Program {
 	public static void main(String[] args) {
-		NeonEngine.init(new Game(), new GameSettings("Test", false, false, 1000, 500, 1));
+		NeonEngine.init(new Game(), new GameSettings("Test", false, false, 1280, 720, 60));
 	}
 }

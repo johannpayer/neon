@@ -5,18 +5,23 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.MouseInfo;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import flamesdev.neon.critical.GeneralUtils.OSType;
+import flamesdev.neon.input.InputEngine;
+import flamesdev.neon.physics.Vector2D;
+import flamesdev.neon.rendering.RenderEngine;
+import flamesdev.neon.utils.GeneralUtils;
+import flamesdev.neon.utils.GeneralUtils.OSType;
 
 public class NeonEngine extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	private final static NeonEngine instance = new NeonEngine();
 	private Thread thread;
 	private IGame game;
-	private GameSettings settings;
+	private static GameSettings settings;
 
 	public static void init(IGame game, GameSettings settings) {
 		instance.setPreferredSize(new Dimension(settings.width, settings.height));
@@ -38,7 +43,9 @@ public class NeonEngine extends Canvas implements Runnable {
 		instance.start();
 
 		instance.game = game;
-		instance.settings = settings;
+		NeonEngine.settings = settings;
+
+		RenderEngine.setSettings(settings);
 	}
 
 	public void start() {
@@ -50,6 +57,16 @@ public class NeonEngine extends Canvas implements Runnable {
 	public void run() {
 		try {
 			while (true) {
+				// Inputs
+				try {
+					InputEngine.mousePosition = new Vector2D(MouseInfo.getPointerInfo().getLocation())
+							.subtract(new Vector2D(getLocationOnScreen()))
+							.divide(new Vector2D(settings.width, settings.height));
+					InputEngine.mousePosition.y = 1 - InputEngine.mousePosition.y;
+				} catch (Exception ex) {
+					// Ignore
+				}
+
 				// Tick
 				game.tick();
 
@@ -58,6 +75,7 @@ public class NeonEngine extends Canvas implements Runnable {
 				Graphics graphics = null;
 				try {
 					graphics = bs.getDrawGraphics();
+					graphics.clearRect(0, 0, settings.width, settings.height);
 					game.render(graphics);
 				} finally {
 					graphics.dispose();
@@ -70,5 +88,9 @@ public class NeonEngine extends Canvas implements Runnable {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public static GameSettings getSettings() {
+		return settings;
 	}
 }
