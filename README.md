@@ -1,4 +1,4 @@
-![neon](https://raw.githubusercontent.com/flamesdev/neon-docs/master/neon%20logo.png)
+![neon](https://raw.githubusercontent.com/flamesdev/neon-docs/master/imgs/neon%20logo.png)
 
 
 A lightweight, easy-to-use game library.\
