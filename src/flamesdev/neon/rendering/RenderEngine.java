@@ -20,6 +20,9 @@ public class RenderEngine {
 
 	/**
 	 * Draws a rectangle.
+	 * 
+	 * @param graphics  the graphics object used to draw the game's graphics
+	 * @param rectangle the rectangle to be drawn
 	 */
 	public static void drawRectangle(Graphics graphics, Rectangle rectangle) {
 		if (rectangle.color != null)

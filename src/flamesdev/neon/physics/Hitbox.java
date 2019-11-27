@@ -83,6 +83,11 @@ public class Hitbox {
 
 	/**
 	 * Shifts the hitbox so that it fits within the specified bounds.
+	 * 
+	 * @param lowX  the low X bound
+	 * @param highX the high X bound
+	 * @param lowY  the low Y bound
+	 * @param highY the high Y bound
 	 */
 	public void keepWithinBounds(double lowX, double highX, double lowY, double highY) {
 		if (getLowerXBound() < lowX)
