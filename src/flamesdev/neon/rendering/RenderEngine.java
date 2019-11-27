@@ -7,10 +7,20 @@ import flamesdev.neon.critical.GameSettings;
 public class RenderEngine {
 	private static GameSettings settings;
 
+	/**
+	 * Sets the settings of the render engine. Once a value is defined, it cannot be
+	 * changed.
+	 * 
+	 * @param settings the game settings
+	 */
 	public static void setSettings(GameSettings settings) {
-		RenderEngine.settings = settings;
+		if (RenderEngine.settings == null)
+			RenderEngine.settings = settings;
 	}
 
+	/**
+	 * Draws a rectangle.
+	 */
 	public static void drawRectangle(Graphics graphics, Rectangle rectangle) {
 		if (rectangle.color != null)
 			graphics.setColor(rectangle.color);
@@ -25,7 +35,7 @@ public class RenderEngine {
 			graphics.drawRect(parameters[0], parameters[1], parameters[2], parameters[3]);
 	}
 
-	public static double reverseY(double y) {
+	private static double reverseY(double y) {
 		return settings.height - y;
 	}
 }

@@ -2,28 +2,49 @@ package flamesdev.neon.physics;
 
 import flamesdev.neon.utils.GeneralUtils;
 
+/**
+ * A fundamental class used to simulate physics. Each game object which has
+ * collisions is encapsulated by this class.
+ */
 public class Hitbox {
 	private Vector2D center;
 	private double width, height;
 
+	/**
+	 * @param center the center point of the hitbox
+	 * @param width  the width of the hitbox
+	 * @param height the height of the hitbox
+	 */
 	public Hitbox(Vector2D center, double width, double height) {
 		this.center = center;
 		this.width = width;
 		this.height = height;
 	}
 
+	/**
+	 * @return the lowest x-value contained in the hitbox
+	 */
 	public double getLowerXBound() {
 		return center.x - width / 2;
 	}
 
+	/**
+	 * @return the highest x-value contained in the hitbox
+	 */
 	public double getHigherXBound() {
 		return center.x + width / 2;
 	}
 
+	/**
+	 * @return the lowest y-value contained in the hitbox
+	 */
 	public double getLowerYBound() {
 		return center.y - height / 2;
 	}
 
+	/**
+	 * @return the highest y-value contained in the hitbox
+	 */
 	public double getHigherYBound() {
 		return center.y + height / 2;
 	}
@@ -60,17 +81,26 @@ public class Hitbox {
 		center.y = bound - height / 2;
 	}
 
+	/**
+	 * Shifts the hitbox so that it fits within the specified bounds.
+	 */
 	public void keepWithinBounds(double lowX, double highX, double lowY, double highY) {
 		if (getLowerXBound() < lowX)
 			setLowerXBound(lowX);
-		if (getHigherXBound() > highX)
+		else if (getHigherXBound() > highX)
 			setHigherXBound(highX);
 		if (getLowerYBound() < lowY)
 			setLowerYBound(lowY);
-		if (getHigherYBound() > highY)
+		else if (getHigherYBound() > highY)
 			setHigherYBound(highY);
 	}
 
+	/**
+	 * Shifts the hitbox in order to prevent it from intersecting with another
+	 * hitbox.
+	 * 
+	 * @param other the other hitbox
+	 */
 	public void preventIntersection(Hitbox other) {
 		if (intersectsHitbox(other)) {
 			double xDifference = center.x - other.center.x;

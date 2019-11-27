@@ -2,6 +2,9 @@ package flamesdev.neon.physics;
 
 import java.awt.Point;
 
+/**
+ * A two-dimensional vector with two values: x and y.
+ */
 public class Vector2D {
 	public double x, y;
 

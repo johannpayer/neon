@@ -2,4 +2,5 @@
 .classpath
 *.class
 *.settings
+*.jar
 /bin/

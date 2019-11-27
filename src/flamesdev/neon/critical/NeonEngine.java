@@ -6,16 +6,20 @@ import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import flamesdev.neon.input.InputEngine;
+import flamesdev.neon.input.InputSystem;
 import flamesdev.neon.physics.Vector2D;
 import flamesdev.neon.rendering.RenderEngine;
 import flamesdev.neon.utils.GeneralUtils;
 import flamesdev.neon.utils.GeneralUtils.OSType;
 
+/**
+ * This is the main class for the Neon Game Library.
+ */
 public class NeonEngine extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	private final static NeonEngine instance = new NeonEngine();
@@ -23,7 +27,19 @@ public class NeonEngine extends Canvas implements Runnable {
 	private IGame game;
 	private static GameSettings settings;
 
+	/**
+	 * Creates a window for the game and initializes the engine.
+	 * 
+	 * @param game     a class which implements the IGame interface and contains the
+	 *                 main logic of your game
+	 * @param settings the basic settings used for your game
+	 */
 	public static void init(IGame game, GameSettings settings) {
+		if (settings.maximize) {
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			settings.width = screenSize.width;
+			settings.height = screenSize.height;
+		}
 		instance.setPreferredSize(new Dimension(settings.width, settings.height));
 		instance.requestFocus();
 
@@ -38,7 +54,7 @@ public class NeonEngine extends Canvas implements Runnable {
 		frame.pack();
 		frame.setVisible(true);
 
-		instance.createBufferStrategy(2);
+		instance.createBufferStrategy(settings.buffers);
 
 		instance.start();
 
@@ -48,7 +64,7 @@ public class NeonEngine extends Canvas implements Runnable {
 		RenderEngine.setSettings(settings);
 	}
 
-	public void start() {
+	private void start() {
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -59,10 +75,10 @@ public class NeonEngine extends Canvas implements Runnable {
 			while (true) {
 				// Inputs
 				try {
-					InputEngine.mousePosition = new Vector2D(MouseInfo.getPointerInfo().getLocation())
+					InputSystem.mousePosition = new Vector2D(MouseInfo.getPointerInfo().getLocation())
 							.subtract(new Vector2D(getLocationOnScreen()))
 							.divide(new Vector2D(settings.width, settings.height));
-					InputEngine.mousePosition.y = 1 - InputEngine.mousePosition.y;
+					InputSystem.mousePosition.y = 1 - InputSystem.mousePosition.y;
 				} catch (Exception ex) {
 					// Ignore
 				}
@@ -90,6 +106,9 @@ public class NeonEngine extends Canvas implements Runnable {
 		}
 	}
 
+	/**
+	 * @return the game settings
+	 */
 	public static GameSettings getSettings() {
 		return settings;
 	}
