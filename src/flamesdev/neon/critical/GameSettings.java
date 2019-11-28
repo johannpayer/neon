@@ -1,5 +1,8 @@
 package flamesdev.neon.critical;
 
+/**
+ * A class that stores data about the game's settings.
+ */
 public class GameSettings {
 	public final String title;
 	public final boolean fullscreen, maximize, undecorated;

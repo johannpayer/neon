@@ -6,14 +6,14 @@ import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import flamesdev.neon.input.InputSystem;
 import flamesdev.neon.physics.Vector2D;
-import flamesdev.neon.rendering.RenderEngine;
+import flamesdev.neon.rendering.RenderSystem;
 import flamesdev.neon.utils.GeneralUtils;
 import flamesdev.neon.utils.GeneralUtils.OSType;
 
@@ -56,12 +56,16 @@ public class NeonEngine extends Canvas implements Runnable {
 
 		instance.createBufferStrategy(settings.buffers);
 
-		instance.start();
-
 		instance.game = game;
 		NeonEngine.settings = settings;
 
-		RenderEngine.setSettings(settings);
+		RenderSystem.setSettings(settings);
+
+		instance.addMouseListener(new MouseInput());
+
+		game.init();
+
+		instance.start();
 	}
 
 	private void start() {
@@ -75,13 +79,11 @@ public class NeonEngine extends Canvas implements Runnable {
 			while (true) {
 				// Inputs
 				try {
-					InputSystem.mousePosition = new Vector2D(MouseInfo.getPointerInfo().getLocation())
-							.subtract(new Vector2D(getLocationOnScreen()))
-							.divide(new Vector2D(settings.width, settings.height));
-					InputSystem.mousePosition.y = 1 - InputSystem.mousePosition.y;
+					InputSystem.mousePosition = new Vector2D(MouseInfo.getPointerInfo().getLocation());
 				} catch (Exception ex) {
 					// Ignore
 				}
+				InputSystem.update();
 
 				// Tick
 				game.tick();
@@ -111,5 +113,9 @@ public class NeonEngine extends Canvas implements Runnable {
 	 */
 	public static GameSettings getSettings() {
 		return settings;
+	}
+
+	public static Point getPositionOnScreen() {
+		return instance.getLocationOnScreen();
 	}
 }

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import flamesdev.neon.critical.GameSettings;
 
-public class RenderEngine {
+public class RenderSystem {
 	private static GameSettings settings;
 
 	/**
@@ -14,8 +14,8 @@ public class RenderEngine {
 	 * @param settings the game settings
 	 */
 	public static void setSettings(GameSettings settings) {
-		if (RenderEngine.settings == null)
-			RenderEngine.settings = settings;
+		if (RenderSystem.settings == null)
+			RenderSystem.settings = settings;
 	}
 
 	/**

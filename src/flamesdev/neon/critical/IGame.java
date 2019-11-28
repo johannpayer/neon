@@ -7,6 +7,11 @@ import java.awt.Graphics;
  * a functioning game.
  */
 public interface IGame {
+	/**
+	 * A method called when the game starts.
+	 */
+	void init();
+
 	/*
 	 * A method called by the NeonEngine every tick at the rate specified in the
 	 * game settings.
