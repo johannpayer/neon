@@ -12,7 +12,7 @@ public interface IGame {
 	 */
 	void init();
 
-	/*
+	/**
 	 * A method called by the NeonEngine every tick at the rate specified in the
 	 * game settings.
 	 */

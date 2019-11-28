@@ -91,14 +91,16 @@ public class NeonEngine extends Canvas implements Runnable {
 				// Render
 				BufferStrategy bs = getBufferStrategy();
 				Graphics graphics = null;
-				try {
-					graphics = bs.getDrawGraphics();
-					graphics.clearRect(0, 0, settings.width, settings.height);
-					game.render(graphics);
-				} finally {
-					graphics.dispose();
-				}
-				bs.show();
+				do {
+					try {
+						graphics = bs.getDrawGraphics();
+						graphics.clearRect(0, 0, settings.width, settings.height);
+						game.render(graphics);
+					} finally {
+						graphics.dispose();
+					}
+					bs.show();
+				} while (bs.contentsLost());
 
 				// Sleep
 				Thread.sleep((long) (1000 / settings.tickRate));

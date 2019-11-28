@@ -9,6 +9,16 @@ public class GameSettings {
 	public int width, height, buffers;
 	public final double tickRate;
 
+	/**
+	 * @param title       the title of the window
+	 * @param fullscreen  whether the window should be fullscreen
+	 * @param undecorated whether the window should be decorated
+	 * @param maximize    whether the window should be maximized
+	 * @param width       the width of the window in pixels
+	 * @param height      the height of the window in pixels
+	 * @param tickRate    the number of ticks per second
+	 * @param buffers     the number of buffer frames
+	 */
 	public GameSettings(String title, boolean fullscreen, boolean undecorated, boolean maximize, int width, int height,
 			double tickRate, int buffers) {
 		this.title = title;
