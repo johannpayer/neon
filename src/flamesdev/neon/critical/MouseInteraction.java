@@ -1,34 +1,33 @@
 package flamesdev.neon.critical;
 
-import java.awt.event.MouseEvent;
-
-import javax.swing.SwingUtilities;
-
 import flamesdev.neon.physics.Vector2D;
+
+import javax.swing.*;
+import java.awt.event.MouseEvent;
 
 /**
  * A class that stores data about a mouse interaction.
  */
 public class MouseInteraction {
-	public enum MouseButtonType {
-		LEFT, MIDDLE, RIGHT, OTHER
-	}
+    public final MouseButtonType mouseButtonType;
+    public final Vector2D position;
 
-	public final MouseButtonType mouseButtonType;
-	public final Vector2D position;
+    public MouseInteraction(MouseEvent e) {
+        this.mouseButtonType = getMouseButtonType(e);
+        this.position = new Vector2D(e.getPoint());
+    }
 
-	public MouseInteraction(MouseEvent e) {
-		this.mouseButtonType = getMouseButtonType(e);
-		this.position = new Vector2D(e.getPoint());
-	}
-
-	private MouseButtonType getMouseButtonType(MouseEvent e) {
-		if (SwingUtilities.isLeftMouseButton(e))
-			return MouseButtonType.LEFT;
-		if (SwingUtilities.isMiddleMouseButton(e))
-			return MouseButtonType.MIDDLE;
-		if (SwingUtilities.isRightMouseButton(e))
-			return MouseButtonType.RIGHT;
-		return MouseButtonType.OTHER;
-	}
+    /**
+     * @param event the mouse event
+     * @return an enumeration describing the type of mouse button click
+     */
+    private MouseButtonType getMouseButtonType(MouseEvent event) {
+        if (SwingUtilities.isLeftMouseButton(event))
+            return MouseButtonType.LEFT;
+        if (SwingUtilities.isMiddleMouseButton(event))
+            return MouseButtonType.MIDDLE;
+        if (SwingUtilities.isRightMouseButton(event))
+            return MouseButtonType.RIGHT;
+        return MouseButtonType.OTHER;
+    }
 }

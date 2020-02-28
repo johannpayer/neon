@@ -1,6 +1,10 @@
+.idea
 .project
 .classpath
 *.class
 *.settings
-*.jar
+*.iml
+*.ipr
+*.iws
+*.xml
 /bin/
