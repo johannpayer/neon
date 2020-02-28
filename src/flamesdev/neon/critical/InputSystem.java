@@ -22,9 +22,9 @@ public class InputSystem {
     protected static List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
 
     protected static void update() {
-        mousePresses = mousePressQueue.stream().toArray(MouseInteraction[]::new);
+        mousePresses = mousePressQueue.toArray(new MouseInteraction[0]);
         mousePressQueue.clear();
-        mouseReleases = mouseReleaseQueue.stream().toArray(MouseInteraction[]::new);
+        mouseReleases = mouseReleaseQueue.toArray(new MouseInteraction[0]);
         mouseReleaseQueue.clear();
     }
 

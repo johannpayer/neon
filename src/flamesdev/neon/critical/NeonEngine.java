@@ -3,6 +3,7 @@ package flamesdev.neon.critical;
 import flamesdev.neon.physics.Vector2D;
 import flamesdev.neon.rendering.RenderSystem;
 import flamesdev.neon.utils.GeneralUtils;
+import flamesdev.neon.utils.OSType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,6 @@ public class NeonEngine extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
     private final static NeonEngine instance = new NeonEngine();
     private static GameSettings settings;
-    private Thread thread;
     private IGame game;
 
     /**
@@ -71,8 +71,7 @@ public class NeonEngine extends Canvas implements Runnable {
     }
 
     private void start() {
-        thread = new Thread(this);
-        thread.start();
+        new Thread(this).start();
     }
 
     /**
@@ -102,6 +101,7 @@ public class NeonEngine extends Canvas implements Runnable {
                         graphics.clearRect(0, 0, settings.width, settings.height);
                         game.render(graphics);
                     } finally {
+                        assert graphics != null;
                         graphics.dispose();
                     }
                     bs.show();
