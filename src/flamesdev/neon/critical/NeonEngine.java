@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 /**
- * This is the main class for the Neon Game Library.
+ * The the main class for the Neon Game Library.
  */
 public class NeonEngine extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
@@ -22,8 +22,8 @@ public class NeonEngine extends Canvas implements Runnable {
      * Creates a window for the game and initializes the engine.
      *
      * @param game     a class which implements the IGame interface and contains the
-     *                 main logic of your game
-     * @param settings the basic settings used for your game
+     *                 main logic of a game
+     * @param settings the basic settings used for a game
      */
     public static void init(IGame game, GameSettings settings) {
         if (settings.maximize) {
