@@ -26,7 +26,7 @@ public class Hitbox {
      * @return the lowest x-value contained in the hitbox
      */
     public double getLowerXBound() {
-        return center.x - width / 2;
+        return center.getX() - width / 2;
     }
 
     /**
@@ -35,14 +35,14 @@ public class Hitbox {
      * @param bound the specified bound
      */
     public void setLowerXBound(double bound) {
-        center.x = bound + width / 2;
+        center.setX(bound + width / 2);
     }
 
     /**
      * @return the highest x-value contained in the hitbox
      */
     public double getHigherXBound() {
-        return center.x + width / 2;
+        return center.getX() + width / 2;
     }
 
     /**
@@ -51,14 +51,14 @@ public class Hitbox {
      * @param bound the specified bound
      */
     public void setHigherXBound(double bound) {
-        center.x = bound - width / 2;
+        center.setX(bound - width / 2);
     }
 
     /**
      * @return the lowest y-value contained in the hitbox
      */
     public double getLowerYBound() {
-        return center.y - height / 2;
+        return center.getY() - height / 2;
     }
 
     /**
@@ -67,14 +67,14 @@ public class Hitbox {
      * @param bound the specified bound
      */
     public void setLowerYBound(double bound) {
-        center.y = bound + height / 2;
+        center.setY(bound + height / 2);
     }
 
     /**
      * @return the highest y-value contained in the hitbox
      */
     public double getHigherYBound() {
-        return center.y + height / 2;
+        return center.getY() + height / 2;
     }
 
     /**
@@ -83,7 +83,7 @@ public class Hitbox {
      * @param bound the specified bound
      */
     public void setHigherYBound(double bound) {
-        center.y = bound - height / 2;
+        center.setY(bound - height / 2);
     }
 
     /**
@@ -112,7 +112,7 @@ public class Hitbox {
     /**
      * Sets the hitbox's width
      *
-     * @param width the specified width
+     * @param width the new width
      */
     public void setWidth(double width) {
         this.width = width;
@@ -128,7 +128,7 @@ public class Hitbox {
     /**
      * Sets the hitbox's height
      *
-     * @param height the specified height
+     * @param height the new height
      */
     public void setHeight(double height) {
         this.height = height;
@@ -161,14 +161,13 @@ public class Hitbox {
      */
     public void preventIntersection(Hitbox other) {
         if (intersectsHitbox(other)) {
-            double xDifference = center.x - other.center.x;
-            double yDifference = center.y - other.center.y;
-            if (Math.abs(xDifference) >= Math.abs(yDifference))
-                if (xDifference < 0)
+            Vector2D difference = center.safeSubtract(other.getCenter());
+            if (Math.abs(difference.getX()) >= Math.abs(difference.getY()))
+                if (difference.getX() < 0)
                     setHigherXBound(other.getLowerXBound());
                 else
                     setLowerXBound(other.getHigherXBound());
-            else if (yDifference < 0)
+            else if (difference.getY() < 0)
                 setHigherYBound(other.getLowerYBound());
             else
                 setLowerYBound(other.getHigherYBound());
@@ -180,8 +179,8 @@ public class Hitbox {
      * @return whether the hitbox contains the vector
      */
     public boolean containsVector(Vector2D vector) {
-        return GeneralUtils.withinRange(vector.x, getLowerXBound(), getHigherXBound())
-                && GeneralUtils.withinRange(vector.y, getLowerYBound(), getHigherYBound());
+        return GeneralUtils.withinRange(vector.getX(), getLowerXBound(), getHigherXBound())
+                && GeneralUtils.withinRange(vector.getY(), getLowerYBound(), getHigherYBound());
     }
 
     /**
@@ -189,8 +188,8 @@ public class Hitbox {
      * @return whether the current hitbox intersects the specified hitbox
      */
     public boolean intersectsHitbox(Hitbox other) {
-        return Math.abs(center.x - other.center.x) <= GeneralUtils.getAverage(new double[] { width, other.width })
-                && Math.abs(center.y - other.center.y) <= GeneralUtils
-                .getAverage(new double[] { height, other.height });
+        Vector2D difference = center.safeSubtract(other.center);
+        return Math.abs(difference.getX()) <= GeneralUtils.getAverage(new double[] { width, other.width })
+                && Math.abs(difference.getY()) <= GeneralUtils.getAverage(new double[] { height, other.height });
     }
 }

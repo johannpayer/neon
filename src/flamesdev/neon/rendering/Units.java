@@ -27,7 +27,7 @@ public class Units {
      * @return the respective width units
      */
     public static double toWidth(double height) {
-        return height * settings.width / settings.height;
+        return height * settings.getWidth() / settings.getHeight();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Units {
      * @return the respective height units
      */
     public static double toHeight(double width) {
-        return width * settings.width / settings.height;
+        return width * settings.getWidth() / settings.getHeight();
     }
 
     /**
@@ -47,7 +47,7 @@ public class Units {
      * @return the respective width units
      */
     public static double toPixelWidth(double pixels) {
-        return pixels / settings.width;
+        return pixels / settings.getWidth();
     }
 
     /**
@@ -57,6 +57,6 @@ public class Units {
      * @return the respective height units
      */
     public static double toPixelHeight(double pixels) {
-        return pixels / settings.height;
+        return pixels / settings.getHeight();
     }
 }

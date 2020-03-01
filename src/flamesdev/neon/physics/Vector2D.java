@@ -10,9 +10,8 @@ import java.awt.*;
  */
 public class Vector2D {
     private static GameSettings settings;
-
-    public double x;
-    public double y;
+    private double x;
+    private double y;
 
     public Vector2D(double x, double y) {
         this.x = x;
@@ -26,7 +25,7 @@ public class Vector2D {
         Point screenPosition = NeonEngine.getPositionOnScreen();
         subtract(new Vector2D(screenPosition.getX(), screenPosition.getY()));
         GameSettings settings = NeonEngine.getSettings();
-        divide(new Vector2D(settings.width, settings.height));
+        divide(new Vector2D(settings.getWidth(), settings.getHeight()));
         y = 1 - y;
     }
 
@@ -40,6 +39,38 @@ public class Vector2D {
     public static void setSettings(GameSettings settings) {
         if (Vector2D.settings == null)
             Vector2D.settings = settings;
+    }
+
+    /**
+     * @return the vector's x-value
+     */
+    public double getX() {
+        return x;
+    }
+
+    /**
+     * Sets the vector's x-value.
+     *
+     * @param x the new x-value
+     */
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    /**
+     * @return the vector's y-value
+     */
+    public double getY() {
+        return y;
+    }
+
+    /**
+     * Sets the vector's y-value.
+     *
+     * @param y the new y-value
+     */
+    public void setY(double y) {
+        this.y = y;
     }
 
     /**

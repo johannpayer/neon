@@ -1,6 +1,7 @@
 package flamesdev.neon.rendering;
 
 import flamesdev.neon.critical.GameSettings;
+import flamesdev.neon.physics.Hitbox;
 
 import java.awt.*;
 
@@ -29,14 +30,18 @@ public class RenderSystem {
      * @param rectangle the rectangle to be drawn
      */
     public static void drawRectangle(Graphics graphics, Rectangle rectangle) {
-        if (rectangle.color != null)
-            graphics.setColor(rectangle.color);
+        Color color = rectangle.getColor();
+        if (color != null)
+            graphics.setColor(color);
 
-        int[] parameters = new int[] { (int) Math.round(rectangle.hitbox.getLowerXBound() * settings.width),
-                (int) Math.round(reverseY(rectangle.hitbox.getHigherYBound() * settings.height)),
-                (int) Math.round(rectangle.hitbox.getWidth() * settings.width),
-                (int) Math.round(rectangle.hitbox.getHeight() * settings.height) };
-        if (rectangle.fill)
+        Hitbox hitbox = rectangle.getHitbox();
+        int width = settings.getWidth();
+        int height = settings.getHeight();
+        int[] parameters = new int[] { (int) Math.round(hitbox.getLowerXBound() * width),
+                (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
+                (int) Math.round(hitbox.getWidth() * width),
+                (int) Math.round(hitbox.getHeight() * height) };
+        if (rectangle.isFill())
             graphics.fillRect(parameters[0], parameters[1], parameters[2], parameters[3]);
         else
             graphics.drawRect(parameters[0], parameters[1], parameters[2], parameters[3]);
@@ -49,10 +54,12 @@ public class RenderSystem {
      * @param imgObj   the image to be drawn
      */
     public static void drawImage(Graphics graphics, ImageObject imgObj) {
-        graphics.drawImage(imgObj.sprite, (int) Math.round(imgObj.hitbox.getLowerXBound() * settings.width),
-                (int) Math.round(reverseY(imgObj.hitbox.getHigherYBound() * settings.height)),
-                (int) Math.round(imgObj.hitbox.getWidth() * settings.width),
-                (int) Math.round(imgObj.hitbox.getHeight() * settings.height), null);
+        Hitbox hitbox = imgObj.getHitbox();
+        int width = settings.getWidth();
+        int height = settings.getHeight();
+        graphics.drawImage(imgObj.getSprite(), (int) Math.round(hitbox.getLowerXBound() * width),
+                (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
+                (int) Math.round(hitbox.getWidth() * width), (int) Math.round(hitbox.getHeight() * height), null);
     }
 
     /**
@@ -62,12 +69,17 @@ public class RenderSystem {
      * @param textObj  the text to be drawn
      */
     public static void drawText(Graphics graphics, TextObject textObj) {
-        graphics.setFont(textObj.font);
-        graphics.drawString(textObj.text, (int) Math.round(textObj.hitbox.getLowerXBound() * settings.width),
-                (int) Math.round(reverseY(textObj.hitbox.getCenter().y * settings.height)));
+        graphics.setFont(textObj.getFont());
+        graphics.setColor(textObj.getColor());
+
+        Hitbox hitbox = textObj.getHitbox();
+        int width = settings.getWidth();
+        int height = settings.getHeight();
+        graphics.drawString(textObj.getText(), (int) Math.round(hitbox.getLowerXBound() * width),
+                (int) Math.round(reverseY(hitbox.getCenter().getY() * height)));
     }
 
     private static double reverseY(double y) {
-        return settings.height - y;
+        return settings.getHeight() - y;
     }
 }

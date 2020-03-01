@@ -14,7 +14,7 @@ public class HitboxAligner {
      * @return the modified hitbox
      */
     public static Hitbox align(Hitbox hitbox, HorizontalAlignment alignment) {
-        double x = hitbox.getCenter().x;
+        double x = hitbox.getCenter().getX();
         if (alignment == HorizontalAlignment.LEFT)
             hitbox.setLowerXBound(x);
         else
@@ -31,7 +31,7 @@ public class HitboxAligner {
      * @return the modified hitbox
      */
     public static Hitbox align(Hitbox hitbox, VerticalAlignment alignment) {
-        double y = hitbox.getCenter().y;
+        double y = hitbox.getCenter().getY();
         if (alignment == VerticalAlignment.BOTTOM)
             hitbox.setLowerYBound(y);
         else

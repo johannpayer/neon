@@ -32,10 +32,9 @@ public class NeonEngine extends Canvas implements Runnable {
         if (settings.createWindow) {
             if (settings.maximize) {
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                settings.width = screenSize.width;
-                settings.height = screenSize.height;
+                settings.setDimensions(screenSize.width, screenSize.height);
             }
-            instance.setPreferredSize(new Dimension(settings.width, settings.height));
+            instance.setPreferredSize(new Dimension(settings.getWidth(), settings.getHeight()));
             instance.requestFocus();
 
             JFrame frame = new JFrame(settings.title);
@@ -49,7 +48,7 @@ public class NeonEngine extends Canvas implements Runnable {
             frame.pack();
             frame.setVisible(true);
 
-            instance.createBufferStrategy(settings.buffers);
+            instance.createBufferStrategy(settings.getBuffers());
         }
 
         instance.game = game;
@@ -118,7 +117,7 @@ public class NeonEngine extends Canvas implements Runnable {
                     do {
                         try {
                             graphics = bs.getDrawGraphics();
-                            graphics.clearRect(0, 0, settings.width, settings.height);
+                            graphics.clearRect(0, 0, settings.getWidth(), settings.getHeight());
                             game.render(graphics);
                         } finally {
                             assert graphics != null;

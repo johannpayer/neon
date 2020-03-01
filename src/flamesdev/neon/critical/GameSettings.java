@@ -10,9 +10,9 @@ public class GameSettings {
     public final boolean undecorated;
     public final double tickRate;
     public final boolean createWindow;
-    public int width;
-    public int height;
-    public int buffers;
+    private final int buffers;
+    private int width;
+    private int height;
 
     /**
      * @param title        the title of the window
@@ -37,5 +37,34 @@ public class GameSettings {
         this.tickRate = tickRate;
         this.buffers = buffers;
         this.createWindow = createWindow;
+    }
+
+    /**
+     * @return the width of the window
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * @return the height of the window
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @return the number of buffers used to render graphics
+     */
+    public int getBuffers() {
+        return buffers;
+    }
+
+    /**
+     * WARNING: Do not call this method. It is only to be called by core library classes.
+     */
+    public void setDimensions(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 }

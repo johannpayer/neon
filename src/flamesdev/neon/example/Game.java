@@ -26,11 +26,12 @@ public class Game implements IGame {
 
     @Override
     public void tick() {
-        rect.color = InputSystem.leftMouseButtonHeld() ? Color.red : Color.blue;
-        rect.hitbox.setCenter(InputSystem.getMousePosition());
-        rect.hitbox.keepWithinBounds(0, 1, 0, 1);
-        rect.hitbox.preventIntersection(obstacle.hitbox);
-        rect.hitbox.preventIntersection(obstacle2.hitbox);
+        rect.setColor(InputSystem.leftMouseButtonHeld() ? Color.red : Color.blue);
+        Hitbox hitbox = rect.getHitbox();
+        hitbox.setCenter(InputSystem.getMousePosition());
+        hitbox.keepWithinBounds(0, 1, 0, 1);
+        hitbox.preventIntersection(obstacle.getHitbox());
+        hitbox.preventIntersection(obstacle2.getHitbox());
     }
 
     @Override
