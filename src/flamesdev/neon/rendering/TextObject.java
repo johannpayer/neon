@@ -1,7 +1,7 @@
 package flamesdev.neon.rendering;
 
 import flamesdev.neon.critical.GameSettings;
-import flamesdev.neon.physics.Hitbox;
+import flamesdev.neon.physics.RectangularHitbox;
 import flamesdev.neon.physics.Vector2D;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.geom.Rectangle2D;
  */
 public class TextObject {
     private static GameSettings settings;
-    private Hitbox hitbox;
+    private RectangularHitbox hitbox;
     private String text;
     private Font font;
     private Color color;
@@ -30,7 +30,7 @@ public class TextObject {
         this.color = color;
 
         Rectangle2D size = graphics.getFontMetrics(font).getStringBounds(text, graphics);
-        hitbox = new Hitbox(position, size.getWidth() / settings.getWidth(),
+        hitbox = new RectangularHitbox(position, size.getWidth() / settings.getWidth(),
                 size.getHeight() / settings.getHeight());
     }
 
@@ -49,7 +49,7 @@ public class TextObject {
     /**
      * @return the object's hitbox
      */
-    public Hitbox getHitbox() {
+    public RectangularHitbox getHitbox() {
         return hitbox;
     }
 
@@ -58,7 +58,7 @@ public class TextObject {
      *
      * @param hitbox the new hitbox
      */
-    public void setHitbox(Hitbox hitbox) {
+    public void setHitbox(RectangularHitbox hitbox) {
         this.hitbox = hitbox;
     }
 

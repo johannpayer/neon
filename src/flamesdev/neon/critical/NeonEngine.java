@@ -1,5 +1,6 @@
 package flamesdev.neon.critical;
 
+import flamesdev.neon.physics.CircularHitbox;
 import flamesdev.neon.physics.Vector2D;
 import flamesdev.neon.rendering.RenderSystem;
 import flamesdev.neon.rendering.TextObject;
@@ -57,6 +58,7 @@ public class NeonEngine extends Canvas implements Runnable {
         TextObject.setSettings(settings);
         Units.setSettings(settings);
         Vector2D.setSettings(settings);
+        CircularHitbox.setSettings(settings);
 
         instance.addMouseListener(new MouseInput());
 

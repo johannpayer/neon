@@ -40,14 +40,14 @@ public class GameSettings {
     }
 
     /**
-     * @return the width of the window
+     * @return the window's width
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * @return the height of the window
+     * @return the window's height
      */
     public int getHeight() {
         return height;
@@ -62,6 +62,9 @@ public class GameSettings {
 
     /**
      * WARNING: Do not call this method. It is only to be called by core library classes.
+     *
+     * @param width  the window's width
+     * @param height the window's height
      */
     public void setDimensions(int width, int height) {
         this.width = width;

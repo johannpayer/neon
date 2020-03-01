@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.Locale;
 
 /**
- * A class that can used to perform many miscellaneous operations.
+ * A class used to perform many miscellaneous operations.
  */
 public class GeneralUtils {
     private static OSType detectedOS;

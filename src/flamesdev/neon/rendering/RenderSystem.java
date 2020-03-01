@@ -2,6 +2,7 @@ package flamesdev.neon.rendering;
 
 import flamesdev.neon.critical.GameSettings;
 import flamesdev.neon.physics.Hitbox;
+import flamesdev.neon.physics.RectangularHitbox;
 
 import java.awt.*;
 
@@ -34,7 +35,7 @@ public class RenderSystem {
         if (color != null)
             graphics.setColor(color);
 
-        Hitbox hitbox = rectangle.getHitbox();
+        RectangularHitbox hitbox = rectangle.getHitbox();
         int width = settings.getWidth();
         int height = settings.getHeight();
         int[] parameters = new int[] { (int) Math.round(hitbox.getLowerXBound() * width),
@@ -72,7 +73,7 @@ public class RenderSystem {
         graphics.setFont(textObj.getFont());
         graphics.setColor(textObj.getColor());
 
-        Hitbox hitbox = textObj.getHitbox();
+        RectangularHitbox hitbox = textObj.getHitbox();
         int width = settings.getWidth();
         int height = settings.getHeight();
         graphics.drawString(textObj.getText(), (int) Math.round(hitbox.getLowerXBound() * width),

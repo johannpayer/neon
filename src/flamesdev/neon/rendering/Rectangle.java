@@ -1,6 +1,6 @@
 package flamesdev.neon.rendering;
 
-import flamesdev.neon.physics.Hitbox;
+import flamesdev.neon.physics.RectangularHitbox;
 
 import java.awt.*;
 
@@ -8,7 +8,7 @@ import java.awt.*;
  * A representation of a rectangle with a hitbox, color, and fill setting.
  */
 public class Rectangle {
-    private Hitbox hitbox;
+    private RectangularHitbox hitbox;
     private Color color;
     private boolean fill;
 
@@ -17,7 +17,7 @@ public class Rectangle {
      * @param color  the color of the rectangle
      * @param fill   whether the rectangle should be filled when drawn
      */
-    public Rectangle(Hitbox hitbox, Color color, boolean fill) {
+    public Rectangle(RectangularHitbox hitbox, Color color, boolean fill) {
         this.hitbox = hitbox;
         this.color = color;
         this.fill = fill;
@@ -26,7 +26,7 @@ public class Rectangle {
     /**
      * @return the rectangle's hitbox
      */
-    public Hitbox getHitbox() {
+    public RectangularHitbox getHitbox() {
         return hitbox;
     }
 
@@ -35,7 +35,7 @@ public class Rectangle {
      *
      * @param hitbox the new hitbox
      */
-    public void setHitbox(Hitbox hitbox) {
+    public void setHitbox(RectangularHitbox hitbox) {
         this.hitbox = hitbox;
     }
 
