@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Locale;
 
+/**
+ * A class that can used to perform many miscellaneous operations.
+ */
 public class GeneralUtils {
     private static OSType detectedOS;
 
@@ -74,6 +77,7 @@ public class GeneralUtils {
         try {
             return ImageIO.read(new File(path));
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
     }

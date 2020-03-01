@@ -12,15 +12,11 @@ public class MouseInteraction {
     public final MouseButtonType mouseButtonType;
     public final Vector2D position;
 
-    public MouseInteraction(MouseEvent e) {
-        this.mouseButtonType = getMouseButtonType(e);
-        this.position = new Vector2D(e.getPoint());
+    public MouseInteraction(MouseEvent event) {
+        this.mouseButtonType = getMouseButtonType(event);
+        this.position = new Vector2D(event.getPoint());
     }
 
-    /**
-     * @param event the mouse event
-     * @return an enumeration describing the type of mouse button click
-     */
     private MouseButtonType getMouseButtonType(MouseEvent event) {
         if (SwingUtilities.isLeftMouseButton(event))
             return MouseButtonType.LEFT;

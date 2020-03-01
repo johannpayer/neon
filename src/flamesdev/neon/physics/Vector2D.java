@@ -9,6 +9,8 @@ import java.awt.*;
  * A two-dimensional vector with two values: x and y.
  */
 public class Vector2D {
+    private static GameSettings settings;
+
     public double x;
     public double y;
 
@@ -26,6 +28,18 @@ public class Vector2D {
         GameSettings settings = NeonEngine.getSettings();
         divide(new Vector2D(settings.width, settings.height));
         y = 1 - y;
+    }
+
+    /**
+     * WARNING: Do not call this method. It is only to be called by core library.
+     * Sets the settings of the render engine. Once a value is defined, it cannot be
+     * changed.
+     *
+     * @param settings the game settings
+     */
+    public static void setSettings(GameSettings settings) {
+        if (Vector2D.settings == null)
+            Vector2D.settings = settings;
     }
 
     /**
@@ -74,5 +88,45 @@ public class Vector2D {
         x /= other.x;
         y /= other.y;
         return this;
+    }
+
+    /**
+     * Adds another vector to the current vector without changing its value.
+     *
+     * @param other the other vector
+     * @return the result of the operation
+     */
+    public Vector2D safeAdd(Vector2D other) {
+        return new Vector2D(x + other.x, y + other.y);
+    }
+
+    /**
+     * Subtracts the current vector by another vector without changing its value.
+     *
+     * @param other the other vector
+     * @return the result of the operation
+     */
+    public Vector2D safeSubtract(Vector2D other) {
+        return new Vector2D(x - other.x, y - other.y);
+    }
+
+    /**
+     * Multiplies the current vector by another vector without changing its value.
+     *
+     * @param other the other vector
+     * @return the result of the operation
+     */
+    public Vector2D safeMultiply(Vector2D other) {
+        return new Vector2D(x * other.x, y * other.y);
+    }
+
+    /**
+     * Divides the current vector by another vector without changing its value.
+     *
+     * @param other the other vector
+     * @return the result of the operation
+     */
+    public Vector2D safeDivide(Vector2D other) {
+        return new Vector2D(x / other.x, y / other.y);
     }
 }

@@ -4,10 +4,14 @@ import flamesdev.neon.critical.GameSettings;
 
 import java.awt.*;
 
+/**
+ * A class used to render graphics.
+ */
 public class RenderSystem {
     private static GameSettings settings;
 
     /**
+     * WARNING: Do not call this method. It is only to be called by core library.
      * Sets the settings of the render engine. Once a value is defined, it cannot be
      * changed.
      *
@@ -49,6 +53,18 @@ public class RenderSystem {
                 (int) Math.round(reverseY(imgObj.hitbox.getHigherYBound() * settings.height)),
                 (int) Math.round(imgObj.hitbox.getWidth() * settings.width),
                 (int) Math.round(imgObj.hitbox.getHeight() * settings.height), null);
+    }
+
+    /**
+     * Draws text.
+     *
+     * @param graphics the graphics object used to draw the game's graphics
+     * @param textObj  the text to be drawn
+     */
+    public static void drawText(Graphics graphics, TextObject textObj) {
+        graphics.setFont(textObj.font);
+        graphics.drawString(textObj.text, (int) Math.round(textObj.hitbox.getLowerXBound() * settings.width),
+                (int) Math.round(reverseY(textObj.hitbox.getCenter().y * settings.height)));
     }
 
     private static double reverseY(double y) {

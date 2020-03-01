@@ -30,7 +30,7 @@ public class Hitbox {
     }
 
     /**
-     * Modifies the hitbox's center to match the bound specified
+     * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
@@ -46,7 +46,7 @@ public class Hitbox {
     }
 
     /**
-     * Modifies the hitbox's center to match the bound specified
+     * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
@@ -62,7 +62,7 @@ public class Hitbox {
     }
 
     /**
-     * Modifies the hitbox's center to match the bound specified
+     * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
@@ -78,7 +78,7 @@ public class Hitbox {
     }
 
     /**
-     * Modifies the hitbox's center to match the bound specified
+     * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
@@ -94,7 +94,7 @@ public class Hitbox {
     }
 
     /**
-     * Sets the hitbox's center
+     * Sets the hitbox's center.
      *
      * @param center the new position
      */
@@ -110,10 +110,28 @@ public class Hitbox {
     }
 
     /**
+     * Sets the hitbox's width
+     *
+     * @param width the specified width
+     */
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    /**
      * @return the hitbox's height
      */
     public double getHeight() {
         return height;
+    }
+
+    /**
+     * Sets the hitbox's height
+     *
+     * @param height the specified height
+     */
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     /**
