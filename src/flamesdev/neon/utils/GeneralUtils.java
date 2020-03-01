@@ -3,6 +3,12 @@ package flamesdev.neon.utils;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -80,5 +86,73 @@ public class GeneralUtils {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Reads all the lines of text from a file.
+     *
+     * @param path the path of the file
+     * @return a list of strings containing the data in the file
+     */
+    public static List<String> readAllLines(String path) {
+        try {
+            return Files.readAllLines(Paths.get(path));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Reads all the text from a file.
+     *
+     * @param path the path of the file
+     * @return the text in the file
+     */
+    public static String readAllText(String path) {
+        try {
+            return Files.readString(Paths.get(path));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Writes text to a file.
+     *
+     * @param text the text
+     * @param path the path of the file
+     */
+    public static void writeText(String text, String path) {
+        try {
+            Files.writeString(Paths.get(path), text);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes lines of text to a file.
+     *
+     * @param lines the lines of text
+     * @param path  the path of the file
+     */
+    public static void writeLines(List<String> lines, String path) {
+        try {
+            Files.write(Paths.get(path), lines, Charset.defaultCharset());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes lines of text to a file.
+     *
+     * @param lines the lines of text
+     * @param path  the path of the file
+     */
+    public static void writeLines(String[] lines, String path) {
+        writeLines(Arrays.asList(lines), path);
     }
 }

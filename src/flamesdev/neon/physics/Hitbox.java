@@ -1,7 +1,5 @@
 package flamesdev.neon.physics;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * An interface for hitboxes.
  */
@@ -96,7 +94,7 @@ public interface Hitbox {
      * @param other the other hitbox
      * @return whether the current hitbox intersects the specified hitbox
      */
-    boolean intersectsHitbox(Hitbox other) throws NotImplementedException;
+    boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException;
 
     /**
      * Shifts the hitbox in order to prevent it from intersecting with another
@@ -104,5 +102,5 @@ public interface Hitbox {
      *
      * @param other the other hitbox
      */
-    void preventIntersection(Hitbox other) throws NotImplementedException;
+    void preventIntersection(Hitbox other) throws UnsupportedOperationException;
 }

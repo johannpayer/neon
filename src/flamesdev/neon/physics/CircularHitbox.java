@@ -1,7 +1,6 @@
 package flamesdev.neon.physics;
 
 import flamesdev.neon.critical.GameSettings;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * A class used to simulate the physics and interactions of circular hitboxes.
@@ -121,19 +120,19 @@ public class CircularHitbox implements Hitbox {
      * WARNING: This method is unimplemented.
      *
      * @param other the other hitbox
-     * @throws NotImplementedException always
+     * @throws UnsupportedOperationException always
      */
-    public void preventIntersection(Hitbox other) throws NotImplementedException {
-        throw new NotImplementedException();
+    public void preventIntersection(Hitbox other) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("This method is not currently implemented.");
     }
 
     /**
      * WARNING: This method is unimplemented.
      *
      * @param other the other hitbox
-     * @throws NotImplementedException always
+     * @throws UnsupportedOperationException always
      */
-    public boolean intersectsHitbox(Hitbox other) throws NotImplementedException {
-        throw new NotImplementedException();
+    public boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("This method is not currently implemented.");
     }
 }
