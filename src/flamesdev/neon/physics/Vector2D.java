@@ -31,7 +31,7 @@ public class Vector2D {
     }
 
     /**
-     * WARNING: Do not call this method. It is only to be called by core library.
+     * WARNING: Do not call this method. It is only to be called by core library classes.<br>
      * Sets the settings of the render engine. Once a value is defined, it cannot be
      * changed.
      *
