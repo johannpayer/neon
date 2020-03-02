@@ -5,8 +5,7 @@ import flamesdev.neon.utils.GeneralUtils;
 /**
  * A class used to simulate the physics and interactions of rectangular hitboxes.
  */
-public class RectangularHitbox implements Hitbox {
-    private Vector2D center;
+public class RectangularHitbox extends Hitbox {
     private double width;
     private double height;
 
@@ -48,14 +47,6 @@ public class RectangularHitbox implements Hitbox {
         center.setY(bound - height / 2);
     }
 
-    public Vector2D getCenter() {
-        return center;
-    }
-
-    public void setCenter(Vector2D center) {
-        this.center = center;
-    }
-
     public double getWidth() {
         return width;
     }
@@ -85,17 +76,6 @@ public class RectangularHitbox implements Hitbox {
     public boolean containsVector(Vector2D vector) {
         return GeneralUtils.withinRange(vector.getX(), getLowerXBound(), getHigherXBound())
                 && GeneralUtils.withinRange(vector.getY(), getLowerYBound(), getHigherYBound());
-    }
-
-    public void keepWithinBounds(double lowX, double highX, double lowY, double highY) {
-        if (getLowerXBound() < lowX)
-            setLowerXBound(lowX);
-        else if (getHigherXBound() > highX)
-            setHigherXBound(highX);
-        if (getLowerYBound() < lowY)
-            setLowerYBound(lowY);
-        else if (getHigherYBound() > highY)
-            setHigherYBound(highY);
     }
 
     public void preventIntersection(Hitbox other) {

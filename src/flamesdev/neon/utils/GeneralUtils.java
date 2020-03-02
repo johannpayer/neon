@@ -91,12 +91,13 @@ public class GeneralUtils {
     /**
      * Reads all the lines of text from a file.
      *
-     * @param path the path of the file
-     * @return a list of strings containing the data in the file
+     * @param path    the path of the file
+     * @param charset the charset to be used to decode the data
+     * @return a list of strings containing the text in the file
      */
-    public static List<String> readAllLines(String path) {
+    public static List<String> readAllLines(String path, Charset charset) {
         try {
-            return Files.readAllLines(Paths.get(path));
+            return Files.readAllLines(Paths.get(path), charset);
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
@@ -106,12 +107,13 @@ public class GeneralUtils {
     /**
      * Reads all the text from a file.
      *
-     * @param path the path of the file
+     * @param path    the path of the file
+     * @param charset the charset to be used to decode the data
      * @return the text in the file
      */
-    public static String readAllText(String path) {
+    public static String readAllText(String path, Charset charset) {
         try {
-            return Files.readString(Paths.get(path));
+            return new String(Files.readAllBytes(Paths.get(path)), charset);
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
@@ -121,12 +123,13 @@ public class GeneralUtils {
     /**
      * Writes text to a file.
      *
-     * @param text the text
-     * @param path the path of the file
+     * @param text    the text
+     * @param path    the path of the file
+     * @param charset the charset to be used to encode the data
      */
-    public static void writeText(String text, String path) {
+    public static void writeText(String text, String path, Charset charset) {
         try {
-            Files.writeString(Paths.get(path), text);
+            Files.write(Paths.get(path), text.getBytes(charset));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -135,12 +138,13 @@ public class GeneralUtils {
     /**
      * Writes lines of text to a file.
      *
-     * @param lines the lines of text
-     * @param path  the path of the file
+     * @param lines   the lines of text
+     * @param path    the path of the file
+     * @param charset the charset to be used to encode the data
      */
-    public static void writeLines(List<String> lines, String path) {
+    public static void writeLines(List<String> lines, String path, Charset charset) {
         try {
-            Files.write(Paths.get(path), lines, Charset.defaultCharset());
+            Files.write(Paths.get(path), lines, charset);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -149,10 +153,11 @@ public class GeneralUtils {
     /**
      * Writes lines of text to a file.
      *
-     * @param lines the lines of text
-     * @param path  the path of the file
+     * @param lines   the lines of text
+     * @param path    the path of the file
+     * @param charset the charset to be used to encode the data
      */
-    public static void writeLines(String[] lines, String path) {
-        writeLines(Arrays.asList(lines), path);
+    public static void writeLines(String[] lines, String path, Charset charset) {
+        writeLines(Arrays.asList(lines), path, charset);
     }
 }

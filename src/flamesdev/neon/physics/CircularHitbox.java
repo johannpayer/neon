@@ -5,9 +5,8 @@ import flamesdev.neon.critical.GameSettings;
 /**
  * A class used to simulate the physics and interactions of circular hitboxes.
  */
-public class CircularHitbox implements Hitbox {
+public class CircularHitbox extends Hitbox {
     private static GameSettings settings;
-    private Vector2D center;
     private double radius;
     private double width;
     private double height;
@@ -61,14 +60,6 @@ public class CircularHitbox implements Hitbox {
         center.setY(bound - height / 2);
     }
 
-    public Vector2D getCenter() {
-        return center;
-    }
-
-    public void setCenter(Vector2D center) {
-        this.center = center;
-    }
-
     public double getWidth() {
         return width;
     }
@@ -103,17 +94,6 @@ public class CircularHitbox implements Hitbox {
         Vector2D difference = center.safeSubtract(vector);
         return Math.sqrt(Math.pow(difference.getX(), 2) + Math.pow(difference.getY() * settings.getHeight() /
                 settings.getWidth(), 2)) <= radius;
-    }
-
-    public void keepWithinBounds(double lowX, double highX, double lowY, double highY) {
-        if (getLowerXBound() < lowX)
-            setLowerXBound(lowX);
-        else if (getHigherXBound() > highX)
-            setHigherXBound(highX);
-        if (getLowerYBound() < lowY)
-            setLowerYBound(lowY);
-        else if (getHigherYBound() > highY)
-            setHigherYBound(highY);
     }
 
     /**

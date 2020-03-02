@@ -3,82 +3,88 @@ package flamesdev.neon.physics;
 /**
  * An interface for hitboxes.
  */
-public interface Hitbox {
+public abstract class Hitbox {
+    protected Vector2D center;
+
     /**
      * @return the lowest x-value contained in the hitbox
      */
-    double getLowerXBound();
+    public abstract double getLowerXBound();
 
     /**
      * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
-    void setLowerXBound(double bound);
+    public abstract void setLowerXBound(double bound);
 
     /**
      * @return the highest x-value contained in the hitbox
      */
-    double getHigherXBound();
+    public abstract double getHigherXBound();
 
     /**
      * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
-    void setHigherXBound(double bound);
+    public abstract void setHigherXBound(double bound);
 
     /**
      * @return the lowest y-value contained in the hitbox
      */
-    double getLowerYBound();
+    public abstract double getLowerYBound();
 
     /**
      * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
-    void setLowerYBound(double bound);
+    public abstract void setLowerYBound(double bound);
 
     /**
      * @return the highest y-value contained in the hitbox
      */
-    double getHigherYBound();
+    public abstract double getHigherYBound();
 
     /**
      * Modifies the hitbox's center to match the bound specified.
      *
      * @param bound the specified bound
      */
-    void setHigherYBound(double bound);
+    public abstract void setHigherYBound(double bound);
 
     /**
      * @return the hitbox's center
      */
-    Vector2D getCenter();
+    public Vector2D getCenter() {
+        return center;
+    }
 
     /**
      * Sets the hitbox's center.
      *
      * @param center the new position
      */
-    void setCenter(Vector2D center);
+    public void setCenter(Vector2D center) {
+        this.center = center;
+    }
 
     /**
      * @return the hitbox's width
      */
-    double getWidth();
+    public abstract double getWidth();
 
     /**
      * @return the hitbox's height
      */
-    double getHeight();
+    public abstract double getHeight();
 
     /**
      * @param vector the specified vector
      * @return whether the hitbox contains the vector
      */
-    boolean containsVector(Vector2D vector);
+    public abstract boolean containsVector(Vector2D vector);
 
     /**
      * Shifts the hitbox so that it fits within the specified bounds.
@@ -88,13 +94,22 @@ public interface Hitbox {
      * @param lowY  the low Y bound
      * @param highY the high Y bound
      */
-    void keepWithinBounds(double lowX, double highX, double lowY, double highY);
+    public void keepWithinBounds(double lowX, double highX, double lowY, double highY) {
+        if (getLowerXBound() < lowX)
+            setLowerXBound(lowX);
+        else if (getHigherXBound() > highX)
+            setHigherXBound(highX);
+        if (getLowerYBound() < lowY)
+            setLowerYBound(lowY);
+        else if (getHigherYBound() > highY)
+            setHigherYBound(highY);
+    }
 
     /**
      * @param other the other hitbox
      * @return whether the current hitbox intersects the specified hitbox
      */
-    boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException;
+    public abstract boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException;
 
     /**
      * Shifts the hitbox in order to prevent it from intersecting with another
@@ -102,5 +117,5 @@ public interface Hitbox {
      *
      * @param other the other hitbox
      */
-    void preventIntersection(Hitbox other) throws UnsupportedOperationException;
+    public abstract void preventIntersection(Hitbox other) throws UnsupportedOperationException;
 }
