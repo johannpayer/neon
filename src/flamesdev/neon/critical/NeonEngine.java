@@ -42,7 +42,8 @@ public class NeonEngine extends Canvas implements Runnable {
             frame.add(instance);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-            if (settings.fullscreen && GeneralUtils.getOSType() == OSType.MacOS && graphicsDevice.isFullScreenSupported())
+            if (settings.fullscreen && GeneralUtils.getOSType() == OSType.MacOS
+                    && graphicsDevice.isFullScreenSupported())
                 graphicsDevice.setFullScreenWindow(frame);
             frame.setUndecorated(settings.undecorated);
             frame.setResizable(false);
@@ -103,7 +104,9 @@ public class NeonEngine extends Canvas implements Runnable {
             while (loop) {
                 // Inputs
                 try {
-                    InputSystem.mousePosition = new Vector2D(MouseInfo.getPointerInfo().getLocation());
+                    Point location = MouseInfo.getPointerInfo().getLocation();
+                    InputSystem.rawMousePosition = new Vector2D(location, true);
+                    InputSystem.mousePosition = new Vector2D(location, false);
                 } catch (Exception ex) {
                     // Ignore
                 }

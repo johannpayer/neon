@@ -160,4 +160,16 @@ public class GeneralUtils {
     public static void writeLines(String[] lines, String path, Charset charset) {
         writeLines(Arrays.asList(lines), path, charset);
     }
+
+    /**
+     * Checks whether a noun should use its singular or plural form and returns the correct one.
+     *
+     * @param number   the quantity of the noun
+     * @param singular the singular form of the word
+     * @param plural   the plural form of the word
+     * @return the correct form
+     */
+    public static String pluralCheck(double number, String singular, String plural) {
+        return number == 1 ? singular : plural;
+    }
 }

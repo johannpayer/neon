@@ -9,15 +9,14 @@ import java.util.List;
  * A class used to get user input.
  */
 public class InputSystem {
+    protected static Vector2D rawMousePosition;
     protected static Vector2D mousePosition;
-
     protected static MouseInteraction[] mousePresses;
     protected static MouseInteraction[] mouseReleases;
     protected static boolean leftMBHeld;
     protected static boolean middleMBHeld;
     protected static boolean rightMBHeld;
     protected static boolean otherMBHeld;
-
     protected static List<MouseInteraction> mousePressQueue = new ArrayList<>();
     protected static List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
 
@@ -26,6 +25,15 @@ public class InputSystem {
         mousePressQueue.clear();
         mouseReleases = mouseReleaseQueue.toArray(new MouseInteraction[0]);
         mouseReleaseQueue.clear();
+    }
+
+    /**
+     * The value is updated before each tick.
+     *
+     * @return the raw mouse position
+     */
+    public static Vector2D getRawMousePosition() {
+        return rawMousePosition;
     }
 
     /**

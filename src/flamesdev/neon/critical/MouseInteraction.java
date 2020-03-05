@@ -14,7 +14,7 @@ public class MouseInteraction {
 
     public MouseInteraction(MouseEvent event) {
         this.mouseButtonType = getMouseButtonType(event);
-        this.position = new Vector2D(event.getPoint());
+        this.position = new Vector2D(event.getPoint(), false);
     }
 
     private MouseButtonType getMouseButtonType(MouseEvent event) {
