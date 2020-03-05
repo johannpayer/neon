@@ -20,6 +20,7 @@ public class NeonEngine extends Canvas implements Runnable {
     private final static NeonEngine instance = new NeonEngine();
     private static GameSettings settings;
     private static boolean loop = true;
+    private static JFrame frame;
     private IGame game;
 
     /**
@@ -81,7 +82,18 @@ public class NeonEngine extends Canvas implements Runnable {
      * @return the position of the game window on the screen
      */
     public static Point getPositionOnScreen() {
-        return instance.getLocationOnScreen();
+        return (frame == null ? instance : frame).getLocationOnScreen();
+    }
+
+    /**
+     * Sets the frame to be used when calculating the window's position on the screen.<br>
+     * Requires that the "createWindow" property of the game settings is set to false.
+     *
+     * @param frame the frame
+     */
+    public static void setFrame(JFrame frame) {
+        if (!settings.createWindow)
+            NeonEngine.frame = frame;
     }
 
     /**
