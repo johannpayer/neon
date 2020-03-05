@@ -81,8 +81,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D add(Vector2D other) {
-        x += other.x;
-        y += other.y;
+        add(other.x, other.y);
         return this;
     }
 
@@ -106,8 +105,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D subtract(Vector2D other) {
-        x -= other.x;
-        y -= other.y;
+        subtract(other.x, other.y);
         return this;
     }
 
@@ -131,8 +129,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D multiply(Vector2D other) {
-        x *= other.x;
-        y *= other.y;
+        multiply(other.x, other.y);
         return this;
     }
 
@@ -156,8 +153,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D divide(Vector2D other) {
-        x /= other.x;
-        y /= other.y;
+        divide(other.x, other.y);
         return this;
     }
 
@@ -181,7 +177,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D safeAdd(Vector2D other) {
-        return new Vector2D(x + other.x, y + other.y);
+        return safeAdd(other.x, other.y);
     }
 
     /**
@@ -202,7 +198,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D safeSubtract(Vector2D other) {
-        return new Vector2D(x - other.x, y - other.y);
+        return safeSubtract(other.x, other.y);
     }
 
     /**
@@ -223,7 +219,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D safeMultiply(Vector2D other) {
-        return new Vector2D(x * other.x, y * other.y);
+        return safeMultiply(other.x, other.y);
     }
 
     /**
@@ -244,7 +240,7 @@ public class Vector2D {
      * @return the result of the operation
      */
     public Vector2D safeDivide(Vector2D other) {
-        return new Vector2D(x / other.x, y / other.y);
+        return safeDivide(other.x, other.y);
     }
 
     /**
