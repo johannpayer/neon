@@ -254,8 +254,7 @@ public class Vector2D {
         return new Vector2D(this.x / x, this.y / y);
     }
 
-    @Override
-    public Vector2D clone() {
+    public Vector2D copy() {
         return new Vector2D(this.x, this.y);
     }
 }

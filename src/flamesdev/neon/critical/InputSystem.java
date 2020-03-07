@@ -17,8 +17,8 @@ public class InputSystem {
     protected static boolean middleMBHeld;
     protected static boolean rightMBHeld;
     protected static boolean otherMBHeld;
-    protected static List<MouseInteraction> mousePressQueue = new ArrayList<>();
-    protected static List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
+    protected static final List<MouseInteraction> mousePressQueue = new ArrayList<>();
+    protected static final List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
 
     protected static void update() {
         mousePresses = mousePressQueue.toArray(new MouseInteraction[0]);
