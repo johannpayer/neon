@@ -24,4 +24,9 @@ public interface IGame {
      * @param graphics an object used to draw graphics
      */
     void render(Graphics graphics);
+
+    /**
+     * A method called when the game is closed.
+     */
+    void onExit();
 }

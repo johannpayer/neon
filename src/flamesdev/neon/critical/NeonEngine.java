@@ -54,6 +54,14 @@ public class NeonEngine extends Canvas implements Runnable {
             instance.createBufferStrategy(settings.getBuffers());
         }
 
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                terminate();
+                game.onExit();
+            }
+        }));
+
         instance.game = game;
         NeonEngine.settings = settings;
         RenderSystem.setSettings(settings);
