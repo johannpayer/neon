@@ -1,6 +1,10 @@
 package flamesdev.neon.physics;
 
+import flamesdev.neon.critical.GameSettings;
+import flamesdev.neon.critical.NeonEngine;
 import flamesdev.neon.utils.GeneralUtils;
+
+import java.awt.image.BufferedImage;
 
 /**
  * A class used to simulate the physics and interactions of rectangular hitboxes.
@@ -13,6 +17,13 @@ public class RectangularHitbox extends Hitbox {
         this.center = center;
         this.width = width;
         this.height = height;
+    }
+
+    public RectangularHitbox(Vector2D center, BufferedImage image, double scale) {
+        GameSettings settings = NeonEngine.getSettings();
+        this.center = center;
+        width = image.getWidth() * scale / settings.getWidth();
+        height = image.getHeight() * scale / settings.getHeight();
     }
 
     public double getLowerXBound() {
@@ -74,8 +85,8 @@ public class RectangularHitbox extends Hitbox {
     }
 
     public boolean containsVector(Vector2D vector) {
-        return GeneralUtils.withinRange(vector.getX(), getLowerXBound(), getHigherXBound())
-                && GeneralUtils.withinRange(vector.getY(), getLowerYBound(), getHigherYBound());
+        return GeneralUtils.isWithinRange(vector.getX(), getLowerXBound(), getHigherXBound()) &&
+               GeneralUtils.isWithinRange(vector.getY(), getLowerYBound(), getHigherYBound());
     }
 
     public void preventIntersection(Hitbox other) {
@@ -96,7 +107,7 @@ public class RectangularHitbox extends Hitbox {
     public boolean intersectsHitbox(Hitbox other) {
         assert other instanceof RectangularHitbox;
         Vector2D difference = center.safeSubtract(other.getCenter());
-        return Math.abs(difference.getX()) <= GeneralUtils.getAverage(new double[] { width, other.getWidth() })
-                && Math.abs(difference.getY()) <= GeneralUtils.getAverage(new double[] { height, other.getHeight() });
+        return Math.abs(difference.getX()) <= GeneralUtils.getAverage(new double[] { width, other.getWidth() }) &&
+               Math.abs(difference.getY()) <= GeneralUtils.getAverage(new double[] { height, other.getHeight() });
     }
 }

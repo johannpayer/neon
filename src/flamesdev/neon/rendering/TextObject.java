@@ -1,17 +1,19 @@
 package flamesdev.neon.rendering;
 
 import flamesdev.neon.critical.GameSettings;
+import flamesdev.neon.critical.NeonEngine;
 import flamesdev.neon.physics.RectangularHitbox;
 import flamesdev.neon.physics.Vector2D;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 /**
  * A class containing a Hitbox, String, and Font property.
  */
 public class TextObject {
-    private static GameSettings settings;
     private RectangularHitbox hitbox;
     private String text;
     private Font font;
@@ -30,20 +32,9 @@ public class TextObject {
         this.color = color;
 
         Rectangle2D size = graphics.getFontMetrics(font).getStringBounds(text, graphics);
+        GameSettings settings = NeonEngine.getSettings();
         hitbox = new RectangularHitbox(position, size.getWidth() / settings.getWidth(),
                 size.getHeight() / settings.getHeight());
-    }
-
-    /**
-     * WARNING: Do not call this method. It is only to be called by core library classes.<br>
-     * Sets the settings of the render engine. Once a value is defined, it cannot be
-     * changed.
-     *
-     * @param settings the game settings
-     */
-    public static void setSettings(GameSettings settings) {
-        if (TextObject.settings == null)
-            TextObject.settings = settings;
     }
 
     /**

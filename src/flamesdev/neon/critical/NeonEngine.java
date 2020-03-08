@@ -1,15 +1,19 @@
 package flamesdev.neon.critical;
 
-import flamesdev.neon.physics.CircularHitbox;
 import flamesdev.neon.physics.Vector2D;
-import flamesdev.neon.rendering.RenderSystem;
-import flamesdev.neon.rendering.TextObject;
-import flamesdev.neon.rendering.Units;
 import flamesdev.neon.utils.GeneralUtils;
 import flamesdev.neon.utils.OSType;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 /**
@@ -41,10 +45,10 @@ public class NeonEngine extends Canvas implements Runnable {
 
             JFrame frame = new JFrame(settings.title);
             frame.add(instance);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-            if (settings.fullscreen && GeneralUtils.getOSType() == OSType.MacOS
-                    && graphicsDevice.isFullScreenSupported())
+            if (settings.fullscreen && GeneralUtils.getOSType() == OSType.MACOS &&
+                graphicsDevice.isFullScreenSupported())
                 graphicsDevice.setFullScreenWindow(frame);
             frame.setUndecorated(settings.undecorated);
             frame.setResizable(false);
@@ -61,11 +65,6 @@ public class NeonEngine extends Canvas implements Runnable {
 
         instance.game = game;
         NeonEngine.settings = settings;
-        RenderSystem.setSettings(settings);
-        TextObject.setSettings(settings);
-        Units.setSettings(settings);
-        Vector2D.setSettings(settings);
-        CircularHitbox.setSettings(settings);
 
         instance.addMouseListener(new MouseInput());
 
@@ -115,8 +114,7 @@ public class NeonEngine extends Canvas implements Runnable {
     /**
      * WARNING: Do not call this method. It is only to be called by core library classes.
      */
-    @Override
-    public void run() {
+    @Override public void run() {
         try {
             while (loop) {
                 // Inputs

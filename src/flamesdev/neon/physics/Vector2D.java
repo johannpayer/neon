@@ -3,13 +3,12 @@ package flamesdev.neon.physics;
 import flamesdev.neon.critical.GameSettings;
 import flamesdev.neon.critical.NeonEngine;
 
-import java.awt.*;
+import java.awt.Point;
 
 /**
  * A two-dimensional vector with two values: x and y.
  */
 public class Vector2D {
-    private static GameSettings settings;
     private double x;
     private double y;
 
@@ -24,22 +23,10 @@ public class Vector2D {
         if (!directMap) {
             Point screenPosition = NeonEngine.getPositionOnScreen();
             subtract(new Vector2D(screenPosition, true));
+            GameSettings settings = NeonEngine.getSettings();
             divide(settings.getWidth(), settings.getHeight());
-            this.y = 1 - this.y;
+            y = 1 - y;
         }
-    }
-
-    /**
-     * WARNING: Do not call this method. It is only to be called by core library
-     * classes.<br>
-     * Sets the settings of the render engine. Once a value is defined, it cannot be
-     * changed.
-     *
-     * @param settings the game settings
-     */
-    public static void setSettings(GameSettings settings) {
-        if (Vector2D.settings == null)
-            Vector2D.settings = settings;
     }
 
     /**
@@ -78,11 +65,9 @@ public class Vector2D {
      * Adds another vector to the current vector.
      *
      * @param other the other vector
-     * @return the result of the operation
      */
-    public Vector2D add(Vector2D other) {
+    public void add(Vector2D other) {
         add(other.x, other.y);
-        return this;
     }
 
     /**
@@ -90,23 +75,19 @@ public class Vector2D {
      *
      * @param x the x-value
      * @param y the y-value
-     * @return the result of the operation
      */
-    public Vector2D add(double x, double y) {
+    public void add(double x, double y) {
         this.x += x;
         this.y += y;
-        return this;
     }
 
     /**
      * Subtracts the current vector by another vector.
      *
      * @param other the other vector
-     * @return the result of the operation
      */
-    public Vector2D subtract(Vector2D other) {
+    public void subtract(Vector2D other) {
         subtract(other.x, other.y);
-        return this;
     }
 
     /**
@@ -114,23 +95,19 @@ public class Vector2D {
      *
      * @param x the x-value
      * @param y the y-value
-     * @return the result of the operation
      */
-    public Vector2D subtract(double x, double y) {
+    public void subtract(double x, double y) {
         this.x -= x;
         this.y -= y;
-        return this;
     }
 
     /**
      * Multiplies the current vector by another vector.
      *
      * @param other the other vector
-     * @return the result of the operation
      */
-    public Vector2D multiply(Vector2D other) {
+    public void multiply(Vector2D other) {
         multiply(other.x, other.y);
-        return this;
     }
 
     /**
@@ -138,23 +115,19 @@ public class Vector2D {
      *
      * @param x the x-value
      * @param y the y-value
-     * @return the result of the operation
      */
-    public Vector2D multiply(double x, double y) {
+    public void multiply(double x, double y) {
         this.x *= x;
         this.y *= y;
-        return this;
     }
 
     /**
      * Divides the current vector by another vector.
      *
      * @param other the other vector
-     * @return the result of the operation
      */
-    public Vector2D divide(Vector2D other) {
+    public void divide(Vector2D other) {
         divide(other.x, other.y);
-        return this;
     }
 
     /**
@@ -162,12 +135,10 @@ public class Vector2D {
      *
      * @param x the x-value
      * @param y the y-value
-     * @return the result of the operation
      */
-    public Vector2D divide(double x, double y) {
+    public void divide(double x, double y) {
         this.x /= x;
         this.y /= y;
-        return this;
     }
 
     /**
@@ -255,6 +226,6 @@ public class Vector2D {
     }
 
     public Vector2D copy() {
-        return new Vector2D(this.x, this.y);
+        return new Vector2D(x, y);
     }
 }

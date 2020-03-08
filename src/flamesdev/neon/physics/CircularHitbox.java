@@ -1,12 +1,12 @@
 package flamesdev.neon.physics;
 
 import flamesdev.neon.critical.GameSettings;
+import flamesdev.neon.critical.NeonEngine;
 
 /**
  * A class used to simulate the physics and interactions of circular hitboxes.
  */
 public class CircularHitbox extends Hitbox {
-    private static GameSettings settings;
     private double radius;
     private double width;
     private double height;
@@ -14,18 +14,6 @@ public class CircularHitbox extends Hitbox {
     public CircularHitbox(Vector2D center, double radius) {
         this.center = center;
         this.radius = radius;
-    }
-
-    /**
-     * WARNING: Do not call this method. It is only to be called by core library classes.<br>
-     * Sets the settings of the render engine. Once a value is defined, it cannot be
-     * changed.
-     *
-     * @param settings the game settings
-     */
-    public static void setSettings(GameSettings settings) {
-        if (CircularHitbox.settings == null)
-            CircularHitbox.settings = settings;
     }
 
     public double getLowerXBound() {
@@ -74,9 +62,10 @@ public class CircularHitbox extends Hitbox {
      * @param radius the new radius
      */
     public void setRadiusWidth(double radius) {
+        GameSettings settings = NeonEngine.getSettings();
         this.radius = radius;
-        this.width = radius * 2;
-        this.height = width * settings.getWidth() / settings.getHeight();
+        width = radius * 2;
+        height = width * settings.getWidth() / settings.getHeight();
     }
 
     /**
@@ -85,15 +74,17 @@ public class CircularHitbox extends Hitbox {
      * @param radius the new radius
      */
     public void setRadiusHeight(double radius) {
+        GameSettings settings = NeonEngine.getSettings();
         this.radius = radius * settings.getHeight() / settings.getWidth();
-        this.width = this.radius * 2;
-        this.height = radius * 2;
+        width = this.radius * 2;
+        height = radius * 2;
     }
 
     public boolean containsVector(Vector2D vector) {
+        GameSettings settings = NeonEngine.getSettings();
         Vector2D difference = center.safeSubtract(vector);
-        return Math.sqrt(Math.pow(difference.getX(), 2) + Math.pow(difference.getY() * settings.getHeight() /
-                settings.getWidth(), 2)) <= radius;
+        return Math.sqrt(Math.pow(difference.getX(), 2) +
+                         Math.pow(difference.getY() * settings.getHeight() / settings.getWidth(), 2)) <= radius;
     }
 
     /**

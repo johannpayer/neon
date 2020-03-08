@@ -2,7 +2,7 @@ package flamesdev.neon.critical;
 
 import flamesdev.neon.physics.Vector2D;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import java.awt.event.MouseEvent;
 
 /**
@@ -13,11 +13,11 @@ public class MouseInteraction {
     public final Vector2D position;
 
     public MouseInteraction(MouseEvent event) {
-        this.mouseButtonType = getMouseButtonType(event);
-        this.position = new Vector2D(event.getPoint(), false);
+        mouseButtonType = getMouseButtonType(event);
+        position = new Vector2D(event.getPoint(), false);
     }
 
-    private MouseButtonType getMouseButtonType(MouseEvent event) {
+    private static MouseButtonType getMouseButtonType(MouseEvent event) {
         if (SwingUtilities.isLeftMouseButton(event))
             return MouseButtonType.LEFT;
         if (SwingUtilities.isMiddleMouseButton(event))

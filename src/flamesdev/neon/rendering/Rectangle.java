@@ -2,7 +2,7 @@ package flamesdev.neon.rendering;
 
 import flamesdev.neon.physics.RectangularHitbox;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * A representation of a rectangle with a hitbox, color, and fill setting.

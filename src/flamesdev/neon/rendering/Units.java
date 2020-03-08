@@ -1,25 +1,12 @@
 package flamesdev.neon.rendering;
 
 import flamesdev.neon.critical.GameSettings;
+import flamesdev.neon.critical.NeonEngine;
 
 /**
  * A class that converts width and height units.
  */
 public class Units {
-    private static GameSettings settings;
-
-    /**
-     * WARNING: Do not call this method. It is only to be called by core library classes.<br>
-     * Sets the settings of the render engine. Once a value is defined, it cannot be
-     * changed.
-     *
-     * @param settings the game settings
-     */
-    public static void setSettings(GameSettings settings) {
-        if (Units.settings == null)
-            Units.settings = settings;
-    }
-
     /**
      * Converts height units to width units.
      *
@@ -27,6 +14,7 @@ public class Units {
      * @return the respective width units
      */
     public static double toWidth(double height) {
+        GameSettings settings = NeonEngine.getSettings();
         return height * settings.getWidth() / settings.getHeight();
     }
 
@@ -37,6 +25,7 @@ public class Units {
      * @return the respective height units
      */
     public static double toHeight(double width) {
+        GameSettings settings = NeonEngine.getSettings();
         return width * settings.getWidth() / settings.getHeight();
     }
 
@@ -47,6 +36,7 @@ public class Units {
      * @return the respective width units
      */
     public static double toPixelWidth(double pixels) {
+        GameSettings settings = NeonEngine.getSettings();
         return pixels / settings.getWidth();
     }
 
@@ -57,6 +47,7 @@ public class Units {
      * @return the respective height units
      */
     public static double toPixelHeight(double pixels) {
+        GameSettings settings = NeonEngine.getSettings();
         return pixels / settings.getHeight();
     }
 }

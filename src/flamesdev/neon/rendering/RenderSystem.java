@@ -1,29 +1,17 @@
 package flamesdev.neon.rendering;
 
 import flamesdev.neon.critical.GameSettings;
+import flamesdev.neon.critical.NeonEngine;
 import flamesdev.neon.physics.Hitbox;
 import flamesdev.neon.physics.RectangularHitbox;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
 /**
  * A class used to render graphics.
  */
 public class RenderSystem {
-    private static GameSettings settings;
-
-    /**
-     * WARNING: Do not call this method. It is only to be called by core library classes.<br>
-     * Sets the settings of the render engine. Once a value is defined, it cannot be
-     * changed.
-     *
-     * @param settings the game settings
-     */
-    public static void setSettings(GameSettings settings) {
-        if (RenderSystem.settings == null)
-            RenderSystem.settings = settings;
-    }
-
     /**
      * Draws a rectangle.
      *
@@ -36,12 +24,14 @@ public class RenderSystem {
             graphics.setColor(color);
 
         RectangularHitbox hitbox = rectangle.getHitbox();
+        GameSettings settings = NeonEngine.getSettings();
         int width = settings.getWidth();
         int height = settings.getHeight();
-        int[] parameters = new int[] { (int) Math.round(hitbox.getLowerXBound() * width),
+        int[] parameters = new int[] {
+                (int) Math.round(hitbox.getLowerXBound() * width),
                 (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
-                (int) Math.round(hitbox.getWidth() * width),
-                (int) Math.round(hitbox.getHeight() * height) };
+                (int) Math.round(hitbox.getWidth() * width), (int) Math.round(hitbox.getHeight() * height)
+        };
         if (rectangle.isFill())
             graphics.fillRect(parameters[0], parameters[1], parameters[2], parameters[3]);
         else
@@ -56,6 +46,7 @@ public class RenderSystem {
      */
     public static void drawImage(Graphics graphics, ImageObject imgObj) {
         Hitbox hitbox = imgObj.getHitbox();
+        GameSettings settings = NeonEngine.getSettings();
         int width = settings.getWidth();
         int height = settings.getHeight();
         graphics.drawImage(imgObj.getSprite(), (int) Math.round(hitbox.getLowerXBound() * width),
@@ -74,6 +65,7 @@ public class RenderSystem {
         graphics.setColor(textObj.getColor());
 
         RectangularHitbox hitbox = textObj.getHitbox();
+        GameSettings settings = NeonEngine.getSettings();
         int width = settings.getWidth();
         int height = settings.getHeight();
         graphics.drawString(textObj.getText(), (int) Math.round(hitbox.getLowerXBound() * width),
@@ -81,6 +73,7 @@ public class RenderSystem {
     }
 
     private static double reverseY(double y) {
+        GameSettings settings = NeonEngine.getSettings();
         return settings.getHeight() - y;
     }
 }

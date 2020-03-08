@@ -17,8 +17,8 @@ public class InputSystem {
     protected static boolean middleMBHeld;
     protected static boolean rightMBHeld;
     protected static boolean otherMBHeld;
-    protected static final List<MouseInteraction> mousePressQueue = new ArrayList<>();
-    protected static final List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
+    protected static List<MouseInteraction> mousePressQueue = new ArrayList<>();
+    protected static List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
 
     protected static void update() {
         mousePresses = mousePressQueue.toArray(new MouseInteraction[0]);
@@ -66,28 +66,28 @@ public class InputSystem {
     /**
      * @return whether the left mouse button is currently being held
      */
-    public static boolean leftMouseButtonHeld() {
+    public static boolean isLeftMouseButtonHeld() {
         return leftMBHeld;
     }
 
     /**
      * @return whether the middle mouse button is currently being held
      */
-    public static boolean middleMouseButtonHeld() {
+    public static boolean isMiddleMouseButtonHeld() {
         return middleMBHeld;
     }
 
     /**
      * @return whether the right mouse button is currently being held
      */
-    public static boolean rightMouseButtonHeld() {
+    public static boolean isRightMouseButtonHeld() {
         return rightMBHeld;
     }
 
     /**
      * @return whether another mouse button is currently being held
      */
-    public static boolean otherMouseButtonHeld() {
+    public static boolean isOtherMouseButtonHeld() {
         return otherMBHeld;
     }
 }

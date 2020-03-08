@@ -1,6 +1,6 @@
 package flamesdev.neon.critical;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 /**
  * An interface containing a tick and render method which are necessary to make

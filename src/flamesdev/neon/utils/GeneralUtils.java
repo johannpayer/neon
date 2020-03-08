@@ -19,19 +19,19 @@ public class GeneralUtils {
     private static OSType detectedOS;
 
     /**
-     * @return an enumeration describing the operating system type
+     * @return an enumeration specifying the operating system type
      */
     public static OSType getOSType() {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
             if ((OS.contains("mac")) || (OS.contains("darwin")))
-                detectedOS = OSType.MacOS;
+                detectedOS = OSType.MACOS;
             else if (OS.contains("win"))
-                detectedOS = OSType.Windows;
+                detectedOS = OSType.WINDOWS;
             else if (OS.contains("nux"))
-                detectedOS = OSType.Linux;
+                detectedOS = OSType.LINUX;
             else
-                detectedOS = OSType.Other;
+                detectedOS = OSType.OTHER;
         }
         return detectedOS;
     }
@@ -42,7 +42,7 @@ public class GeneralUtils {
      * @param max   the maximum value
      * @return whether the value is within the specified range
      */
-    public static boolean withinRange(double value, double min, double max) {
+    public static boolean isWithinRange(double value, double min, double max) {
         return min <= value && value <= max;
     }
 
@@ -72,17 +72,21 @@ public class GeneralUtils {
      */
     public static double getTotal(double[] numbers) {
         double total = 0;
-        for (double number : numbers) total += number;
+        for (double number : numbers)
+            total += number;
         return total;
     }
 
     /**
+     * Loads an image from a file.<br>
+     * Note: Use '/' as the file seperator in the path.
+     *
      * @param path the path of the image file
      * @return a BufferedImage object or null if an exception is thrown
      */
     public static BufferedImage loadImage(String path) {
         try {
-            return ImageIO.read(new File(path));
+            return ImageIO.read(new File(path.replace("/", File.separator)));
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -90,14 +94,15 @@ public class GeneralUtils {
     }
 
     /**
-     * Reads all the lines of text from a file.
+     * Reads all the lines of text from a file.<br>
+     * Note: Use '/' as the file seperator in the path.
      *
      * @param path    the path of the file
      * @param charset the charset to be used to decode the data
      * @return a list of strings containing the text in the file or null if the file does not exist
      */
     public static List<String> readAllLines(String path, Charset charset) {
-        Path pathObj = Paths.get(path);
+        Path pathObj = Paths.get(path.replace("/", File.separator));
         if (Files.exists(pathObj))
             try {
                 return Files.readAllLines(pathObj, charset);
@@ -108,14 +113,15 @@ public class GeneralUtils {
     }
 
     /**
-     * Reads all the text from a file.
+     * Reads all the text from a file.<br>
+     * Note: Use '/' as the file seperator in the path.
      *
      * @param path    the path of the file
      * @param charset the charset to be used to decode the data
      * @return the text in the file or null if the file does not exist
      */
     public static String readAllText(String path, Charset charset) {
-        Path pathObj = Paths.get(path);
+        Path pathObj = Paths.get(path.replace("/", File.separator));
         if (Files.exists(pathObj))
             try {
                 return new String(Files.readAllBytes(pathObj), charset);
@@ -126,7 +132,8 @@ public class GeneralUtils {
     }
 
     /**
-     * Writes text to a file.
+     * Writes text to a file.<br>
+     * Note: Use '/' as the file seperator in the path.
      *
      * @param text    the text
      * @param path    the path of the file
@@ -135,7 +142,7 @@ public class GeneralUtils {
      */
     public static boolean writeText(String text, String path, Charset charset) {
         try {
-            Files.write(Paths.get(path), text.getBytes(charset));
+            Files.write(Paths.get(path.replace("/", File.separator)), text.getBytes(charset));
             return true;
         } catch (IOException ex) {
             return false;
@@ -143,7 +150,8 @@ public class GeneralUtils {
     }
 
     /**
-     * Writes lines of text to a file.
+     * Writes lines of text to a file.<br>
+     * Note: Use '/' as the file seperator in the path.
      *
      * @param lines   the lines of text
      * @param path    the path of the file
@@ -152,7 +160,7 @@ public class GeneralUtils {
      */
     public static boolean writeLines(List<String> lines, String path, Charset charset) {
         try {
-            Files.write(Paths.get(path), lines, charset);
+            Files.write(Paths.get(path.replace("/", File.separator)), lines, charset);
             return true;
         } catch (IOException ex) {
             return false;
@@ -160,7 +168,8 @@ public class GeneralUtils {
     }
 
     /**
-     * Writes lines of text to a file.
+     * Writes lines of text to a file.<br>
+     * Note: Use '/' as the file seperator in the path.
      *
      * @param lines   the lines of text
      * @param path    the path of the file
