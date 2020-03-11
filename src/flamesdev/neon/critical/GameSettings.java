@@ -27,7 +27,7 @@ public class GameSettings {
      *                     the game will not be called
      */
     public GameSettings(String title, boolean fullscreen, boolean undecorated, boolean maximize, int width, int height,
-                        double tickRate, int buffers, boolean createWindow) {
+            double tickRate, int buffers, boolean createWindow) {
         this.title = title;
         this.fullscreen = fullscreen;
         this.undecorated = undecorated;

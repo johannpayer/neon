@@ -1,12 +1,11 @@
 package flamesdev.neon.rendering;
 
-import flamesdev.neon.critical.GameSettings;
-import flamesdev.neon.critical.NeonEngine;
 import flamesdev.neon.physics.RectangularHitbox;
 import flamesdev.neon.physics.Vector2D;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
@@ -14,9 +13,10 @@ import java.awt.geom.Rectangle2D;
  * A class containing a Hitbox, String, and Font property.
  */
 public class TextObject {
-    private RectangularHitbox hitbox;
-    private String text;
-    private Font font;
+    public final RectangularHitbox hitbox;
+    public final double descent;
+    public final String text;
+    public final Font font;
     private Color color;
 
     /**
@@ -31,58 +31,11 @@ public class TextObject {
         this.font = font;
         this.color = color;
 
-        Rectangle2D size = graphics.getFontMetrics(font).getStringBounds(text, graphics);
-        GameSettings settings = NeonEngine.getSettings();
-        hitbox = new RectangularHitbox(position, size.getWidth() / settings.getWidth(),
-                size.getHeight() / settings.getHeight());
-    }
-
-    /**
-     * @return the object's hitbox
-     */
-    public RectangularHitbox getHitbox() {
-        return hitbox;
-    }
-
-    /**
-     * Sets the hitbox of the object.
-     *
-     * @param hitbox the new hitbox
-     */
-    public void setHitbox(RectangularHitbox hitbox) {
-        this.hitbox = hitbox;
-    }
-
-    /**
-     * @return the object's text
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * Sets the object's text.
-     *
-     * @param text the new text
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * @return the object's font
-     */
-    public Font getFont() {
-        return font;
-    }
-
-    /**
-     * Sets the object's font.
-     *
-     * @param font the new font
-     */
-    public void setFont(Font font) {
-        this.font = font;
+        FontMetrics metrics = graphics.getFontMetrics(font);
+        Rectangle2D size = metrics.getStringBounds(text, graphics);
+        hitbox = new RectangularHitbox(position, Units.toPixelWidth(size.getWidth()),
+                Units.toPixelHeight(size.getHeight()));
+        descent = Units.toPixelHeight(metrics.getDescent());
     }
 
     /**

@@ -84,7 +84,7 @@ public class CircularHitbox extends Hitbox {
         GameSettings settings = NeonEngine.getSettings();
         Vector2D difference = center.safeSubtract(vector);
         return Math.sqrt(Math.pow(difference.getX(), 2) +
-                         Math.pow(difference.getY() * settings.getHeight() / settings.getWidth(), 2)) <= radius;
+                Math.pow(difference.getY() * settings.getHeight() / settings.getWidth(), 2)) <= radius;
     }
 
     /**

@@ -36,8 +36,7 @@ public class Units {
      * @return the respective width units
      */
     public static double toPixelWidth(double pixels) {
-        GameSettings settings = NeonEngine.getSettings();
-        return pixels / settings.getWidth();
+        return pixels / NeonEngine.getSettings().getWidth();
     }
 
     /**
@@ -47,7 +46,6 @@ public class Units {
      * @return the respective height units
      */
     public static double toPixelHeight(double pixels) {
-        GameSettings settings = NeonEngine.getSettings();
-        return pixels / settings.getHeight();
+        return pixels / NeonEngine.getSettings().getHeight();
     }
 }

@@ -27,11 +27,9 @@ public class RenderSystem {
         GameSettings settings = NeonEngine.getSettings();
         int width = settings.getWidth();
         int height = settings.getHeight();
-        int[] parameters = new int[] {
-                (int) Math.round(hitbox.getLowerXBound() * width),
+        int[] parameters = new int[] { (int) Math.round(hitbox.getLowerXBound() * width),
                 (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
-                (int) Math.round(hitbox.getWidth() * width), (int) Math.round(hitbox.getHeight() * height)
-        };
+                (int) Math.round(hitbox.getWidth() * width), (int) Math.round(hitbox.getHeight() * height) };
         if (rectangle.isFill())
             graphics.fillRect(parameters[0], parameters[1], parameters[2], parameters[3]);
         else
@@ -61,15 +59,14 @@ public class RenderSystem {
      * @param textObj  the text to be drawn
      */
     public static void drawText(Graphics graphics, TextObject textObj) {
-        graphics.setFont(textObj.getFont());
+        graphics.setFont(textObj.font);
         graphics.setColor(textObj.getColor());
 
-        RectangularHitbox hitbox = textObj.getHitbox();
         GameSettings settings = NeonEngine.getSettings();
         int width = settings.getWidth();
         int height = settings.getHeight();
-        graphics.drawString(textObj.getText(), (int) Math.round(hitbox.getLowerXBound() * width),
-                (int) Math.round(reverseY(hitbox.getCenter().getY() * height)));
+        graphics.drawString(textObj.text, (int) Math.round(textObj.hitbox.getLowerXBound() * width),
+                (int) Math.round(reverseY((textObj.hitbox.getCenter().getY() - textObj.descent * 1.5) * height)));
     }
 
     private static double reverseY(double y) {

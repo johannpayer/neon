@@ -25,7 +25,7 @@ public class GeneralUtils {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
             if ((OS.contains("mac")) || (OS.contains("darwin")))
-                detectedOS = OSType.MACOS;
+                detectedOS = OSType.MAC_OS;
             else if (OS.contains("win"))
                 detectedOS = OSType.WINDOWS;
             else if (OS.contains("nux"))
@@ -183,12 +183,28 @@ public class GeneralUtils {
     /**
      * Checks whether a noun should use its singular or plural form and returns the correct one.
      *
-     * @param number   the quantity of the noun
-     * @param singular the singular form of the word
-     * @param plural   the plural form of the word
+     * @param number    the quantity of the noun
+     * @param singular  the singular form of the word
+     * @param plural    the plural form of the word
+     * @param inclusive whether the result should include the number
      * @return the correct form
      */
-    public static String pluralCheck(double number, String singular, String plural) {
-        return number == 1 ? singular : plural;
+    public static String pluralCheck(int number, String singular, String plural, boolean inclusive) {
+        String output = number == 1 ? singular : plural;
+        return inclusive ? number + " " + output : output;
+    }
+
+    /**
+     * Checks whether a noun should use its singular or plural form and returns the correct one.
+     *
+     * @param number    the quantity of the noun
+     * @param singular  the singular form of the word
+     * @param plural    the plural form of the word
+     * @param inclusive whether the result should include the number
+     * @return the correct form
+     */
+    public static String pluralCheck(double number, String singular, String plural, boolean inclusive) {
+        String output = number == 1 ? singular : plural;
+        return inclusive ? number + " " + output : output;
     }
 }
