@@ -120,8 +120,11 @@ public class NeonEngine extends Canvas implements Runnable {
                 // Inputs
                 try {
                     Point location = MouseInfo.getPointerInfo().getLocation();
-                    InputSystem.rawMousePosition = new Vector2D(location, true);
-                    InputSystem.mousePosition = new Vector2D(location, false);
+                    InputSystem.rawMousePosition = new Vector2D(location);
+
+                    Vector2D vector = InputSystem.rawMousePosition.safeSubtract(new Vector2D(getPositionOnScreen()));
+                    vector.convertCordinateSystem();
+                    InputSystem.mousePosition = vector;
                 } catch (Exception ex) {
                     // Ignore
                 }

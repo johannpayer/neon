@@ -17,16 +17,17 @@ public class Vector2D {
         this.y = y;
     }
 
-    public Vector2D(Point point, boolean directMap) {
+    public Vector2D(Point point) {
         this(point.getX(), point.getY());
+    }
 
-        if (!directMap) {
-            Point screenPosition = NeonEngine.getPositionOnScreen();
-            subtract(new Vector2D(screenPosition, true));
-            GameSettings settings = NeonEngine.getSettings();
-            divide(settings.getWidth(), settings.getHeight());
-            y = 1 - y;
-        }
+    /**
+     * WARNING: Do not call this method. It is only to be called by core library classes.
+     */
+    public void convertCordinateSystem() {
+        GameSettings settings = NeonEngine.getSettings();
+        divide(settings.getWidth(), settings.getHeight());
+        y = 1 - y;
     }
 
     /**
