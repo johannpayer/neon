@@ -37,6 +37,17 @@ public class RenderSystem {
     }
 
     /**
+     * Draws a rectangle if it is in view.
+     *
+     * @param graphics  the graphics object used to draw the game's graphics
+     * @param rectangle the rectangle to be drawn
+     */
+    public static void smartDrawRectangle(Graphics graphics, Rectangle rectangle) {
+        if (hitboxIsInView(rectangle.getHitbox()))
+            drawRectangle(graphics, rectangle);
+    }
+
+    /**
      * Draws an image.
      *
      * @param graphics the graphics object used to draw the game's graphics
@@ -50,6 +61,17 @@ public class RenderSystem {
         graphics.drawImage(imgObj.getSprite(), (int) Math.round(hitbox.getLowerXBound() * width),
                 (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
                 (int) Math.round(hitbox.getWidth() * width), (int) Math.round(hitbox.getHeight() * height), null);
+    }
+
+    /**
+     * Draws an image if it is in view.
+     *
+     * @param graphics the graphics object used to draw the game's graphics
+     * @param imgObj   the image to be drawn
+     */
+    public static void smartDrawImage(Graphics graphics, ImageObject imgObj) {
+        if (hitboxIsInView(imgObj.getHitbox()))
+            drawImage(graphics, imgObj);
     }
 
     /**
@@ -67,6 +89,26 @@ public class RenderSystem {
         int height = settings.getHeight();
         graphics.drawString(textObj.text, (int) Math.round(textObj.hitbox.getLowerXBound() * width),
                 (int) Math.round(reverseY((textObj.hitbox.getCenter().getY() - textObj.descent * 1.5) * height)));
+    }
+
+    /**
+     * Draws text if it is in view.
+     *
+     * @param graphics the graphics object used to draw the game's graphics
+     * @param textObj  the text to be drawn
+     */
+    public static void smartDrawText(Graphics graphics, TextObject textObj) {
+        if (hitboxIsInView(textObj.hitbox))
+            drawText(graphics, textObj);
+    }
+
+    /**
+     * @param hitbox the specified hitbox
+     * @return whether the hitbox is within view
+     */
+    public static boolean hitboxIsInView(Hitbox hitbox) {
+        return !(hitbox.getHigherXBound() < 0 || hitbox.getLowerXBound() > 1 || hitbox.getHigherYBound() < 0 ||
+                hitbox.getLowerYBound() > 1);
     }
 
     private static double reverseY(double y) {

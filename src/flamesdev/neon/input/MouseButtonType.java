@@ -1,4 +1,4 @@
-package flamesdev.neon.critical;
+package flamesdev.neon.input;
 
 /**
  * An enumeration containing values of mouse button types.

@@ -1,5 +1,6 @@
 package flamesdev.neon.critical;
 
+import flamesdev.neon.input.InputSystem;
 import flamesdev.neon.physics.Vector2D;
 import flamesdev.neon.utils.GeneralUtils;
 import flamesdev.neon.utils.OSType;
@@ -43,7 +44,7 @@ public class NeonEngine extends Canvas implements Runnable {
             instance.setPreferredSize(new Dimension(settings.getWidth(), settings.getHeight()));
             instance.requestFocus();
 
-            JFrame frame = new JFrame(settings.title);
+            frame = new JFrame(settings.title);
             frame.add(instance);
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -66,7 +67,8 @@ public class NeonEngine extends Canvas implements Runnable {
         instance.game = game;
         NeonEngine.settings = settings;
 
-        instance.addMouseListener(new MouseInput());
+        instance.addMouseListener(new InputSystem.MouseInput());
+        instance.addKeyListener(new InputSystem.KeyInput());
 
         game.init();
 
@@ -90,6 +92,13 @@ public class NeonEngine extends Canvas implements Runnable {
     }
 
     /**
+     * @return the frame being used by the game library
+     */
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    /**
      * Sets the frame to be used when calculating the window's position on the screen.<br>
      * Requires that the "createWindow" property of the game settings is set to false.
      *
@@ -107,10 +116,6 @@ public class NeonEngine extends Canvas implements Runnable {
         loop = false;
     }
 
-    private void start() {
-        new Thread(this).start();
-    }
-
     /**
      * WARNING: Do not call this method. It is only to be called by core library classes.
      */
@@ -120,11 +125,12 @@ public class NeonEngine extends Canvas implements Runnable {
                 // Inputs
                 try {
                     Point location = MouseInfo.getPointerInfo().getLocation();
-                    InputSystem.rawMousePosition = new Vector2D(location);
+                    InputSystem.setRawMousePosition(new Vector2D(location));
 
-                    Vector2D vector = InputSystem.rawMousePosition.safeSubtract(new Vector2D(getPositionOnScreen()));
-                    vector.convertCordinateSystem();
-                    InputSystem.mousePosition = vector;
+                    Vector2D vector =
+                            InputSystem.getRawMousePosition().safeSubtract(new Vector2D(getPositionOnScreen()));
+                    vector.convertCoordinateSystem();
+                    InputSystem.setMousePosition(vector);
                 } catch (Exception ex) {
                     // Ignore
                 }
@@ -135,19 +141,18 @@ public class NeonEngine extends Canvas implements Runnable {
 
                 // Render
                 if (settings.createWindow) {
-                    BufferStrategy bs = getBufferStrategy();
-                    Graphics graphics = null;
+                    BufferStrategy bufferStrategy = getBufferStrategy();
+                    Graphics graphics = bufferStrategy.getDrawGraphics();
                     do {
                         try {
-                            graphics = bs.getDrawGraphics();
                             graphics.clearRect(0, 0, settings.getWidth(), settings.getHeight());
                             game.render(graphics);
                         } finally {
                             assert graphics != null;
                             graphics.dispose();
                         }
-                        bs.show();
-                    } while (bs.contentsLost());
+                        bufferStrategy.show();
+                    } while (bufferStrategy.contentsLost());
                 } else
                     game.render(null);
 
@@ -157,5 +162,9 @@ public class NeonEngine extends Canvas implements Runnable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void start() {
+        new Thread(this).start();
     }
 }

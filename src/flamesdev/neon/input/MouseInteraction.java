@@ -1,4 +1,4 @@
-package flamesdev.neon.critical;
+package flamesdev.neon.input;
 
 import flamesdev.neon.physics.Vector2D;
 
@@ -15,7 +15,7 @@ public class MouseInteraction {
     public MouseInteraction(MouseEvent event) {
         mouseButtonType = getMouseButtonType(event);
         position = new Vector2D(event.getPoint());
-        position.convertCordinateSystem();
+        position.convertCoordinateSystem();
     }
 
     private static MouseButtonType getMouseButtonType(MouseEvent event) {
