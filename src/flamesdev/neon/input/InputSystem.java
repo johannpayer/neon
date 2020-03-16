@@ -34,7 +34,10 @@ public class InputSystem {
     private static MouseInteraction[] mousePresses;
     private static MouseInteraction[] mouseReleases;
 
-    protected static void update() {
+    /**
+     * WARNING: Do not call this method. It is only to be called by core library classes.
+     */
+    public static void update() {
         keyPresses = keyPressQueue.toArray(new KeyInteraction[0]);
         keyPressQueue.clear();
         keyReleases = keyReleaseQueue.toArray(new KeyInteraction[0]);
