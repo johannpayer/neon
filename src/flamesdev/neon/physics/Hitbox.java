@@ -116,6 +116,7 @@ public abstract class Hitbox {
      * hitbox.
      *
      * @param other the other hitbox
+     * @return whether the hitboxes collided
      */
-    public abstract void preventIntersection(Hitbox other) throws UnsupportedOperationException;
+    public abstract boolean preventIntersection(Hitbox other) throws UnsupportedOperationException;
 }

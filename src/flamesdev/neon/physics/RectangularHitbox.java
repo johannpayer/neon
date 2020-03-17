@@ -89,8 +89,9 @@ public class RectangularHitbox extends Hitbox {
                 GeneralUtils.isWithinRange(vector.getY(), getLowerYBound(), getHigherYBound());
     }
 
-    public void preventIntersection(Hitbox other) {
-        if (intersectsHitbox(other)) {
+    public boolean preventIntersection(Hitbox other) {
+        boolean intersects = intersectsHitbox(other);
+        if (intersects) {
             Vector2D difference = center.safeSubtract(other.getCenter());
             if (Math.abs(difference.getX()) >= Math.abs(difference.getY()))
                 if (difference.getX() < 0)
@@ -102,6 +103,8 @@ public class RectangularHitbox extends Hitbox {
             else
                 setLowerYBound(other.getHigherYBound());
         }
+
+        return intersects;
     }
 
     public boolean intersectsHitbox(Hitbox other) {

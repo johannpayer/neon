@@ -18,7 +18,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 /**
- * The the main class for the Neon Game Library.
+ * The main class for the Neon Game Library.
  */
 public class NeonEngine extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;

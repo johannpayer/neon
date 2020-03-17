@@ -14,17 +14,17 @@ import java.util.List;
  * A class used to get user input.
  */
 public class InputSystem {
-    private static ArrayList<KeyInteraction> keyPressQueue = new ArrayList<>();
-    private static ArrayList<KeyInteraction> keyReleaseQueue = new ArrayList<>();
-    private static ArrayList<KeyInteraction> keyTypeQueue = new ArrayList<>();
-    private static ArrayList<KeyInteraction> keyHeldQueue = new ArrayList<>();
+    private static final ArrayList<KeyInteraction> keyPressQueue = new ArrayList<>();
+    private static final ArrayList<KeyInteraction> keyReleaseQueue = new ArrayList<>();
+    private static final ArrayList<KeyInteraction> keyTypeQueue = new ArrayList<>();
+    private static final ArrayList<KeyInteraction> keyHeldQueue = new ArrayList<>();
     private static boolean leftMBHeld;
     private static boolean middleMBHeld;
     private static boolean rightMBHeld;
     private static boolean otherMBHeld;
 
-    private static List<MouseInteraction> mousePressQueue = new ArrayList<>();
-    private static List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
+    private static final List<MouseInteraction> mousePressQueue = new ArrayList<>();
+    private static final List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
     private static Vector2D rawMousePosition;
     private static Vector2D mousePosition;
     private static KeyInteraction[] keyPresses;
