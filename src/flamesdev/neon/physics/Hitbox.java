@@ -119,4 +119,9 @@ public abstract class Hitbox {
      * @return whether the hitboxes collided
      */
     public abstract boolean preventIntersection(Hitbox other) throws UnsupportedOperationException;
+
+    /**
+     * @return a copy of the object
+     */
+    public abstract Hitbox copy();
 }

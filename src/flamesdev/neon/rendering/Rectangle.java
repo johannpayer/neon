@@ -1,6 +1,7 @@
 package flamesdev.neon.rendering;
 
 import flamesdev.neon.physics.RectangularHitbox;
+import flamesdev.neon.physics.Vector2D;
 
 import java.awt.Color;
 
@@ -69,5 +70,9 @@ public class Rectangle {
      */
     public void setFill(boolean fill) {
         this.fill = fill;
+    }
+
+    public Rectangle copy() {
+        return new Rectangle(hitbox, color, fill);
     }
 }

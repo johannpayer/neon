@@ -226,6 +226,9 @@ public class Vector2D {
         return new Vector2D(this.x / x, this.y / y);
     }
 
+    /**
+     * @return a copy of the object
+     */
     public Vector2D copy() {
         return new Vector2D(x, y);
     }

@@ -51,4 +51,11 @@ public class ImageObject {
     public void setSprite(BufferedImage sprite) {
         this.sprite = sprite;
     }
+
+    /**
+     * @return a copy of the object
+     */
+    public ImageObject copy() {
+        return new ImageObject(hitbox, sprite);
+    }
 }

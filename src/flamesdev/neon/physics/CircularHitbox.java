@@ -106,4 +106,8 @@ public class CircularHitbox extends Hitbox {
     public boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("This method is not currently implemented.");
     }
+
+    public CircularHitbox copy() {
+        return new CircularHitbox(center, radius);
+    }
 }

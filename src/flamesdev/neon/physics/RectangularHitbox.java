@@ -113,4 +113,8 @@ public class RectangularHitbox extends Hitbox {
         return Math.abs(difference.getX()) <= GeneralUtils.getAverage(new double[] { width, other.getWidth() }) &&
                 Math.abs(difference.getY()) <= GeneralUtils.getAverage(new double[] { height, other.getHeight() });
     }
+
+    public RectangularHitbox copy() {
+        return new RectangularHitbox(center, width, height);
+    }
 }
