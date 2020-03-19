@@ -115,6 +115,6 @@ public class RectangularHitbox extends Hitbox {
     }
 
     public RectangularHitbox copy() {
-        return new RectangularHitbox(center, width, height);
+        return new RectangularHitbox(center.copy(), width, height);
     }
 }

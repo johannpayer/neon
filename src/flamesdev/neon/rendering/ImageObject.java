@@ -56,6 +56,6 @@ public class ImageObject {
      * @return a copy of the object
      */
     public ImageObject copy() {
-        return new ImageObject(hitbox, sprite);
+        return new ImageObject(hitbox.copy(), sprite);
     }
 }

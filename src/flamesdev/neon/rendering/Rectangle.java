@@ -73,6 +73,6 @@ public class Rectangle {
     }
 
     public Rectangle copy() {
-        return new Rectangle(hitbox, color, fill);
+        return new Rectangle(hitbox.copy(), new Color(color.getRGB()), fill);
     }
 }

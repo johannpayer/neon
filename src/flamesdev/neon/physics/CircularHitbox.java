@@ -108,6 +108,6 @@ public class CircularHitbox extends Hitbox {
     }
 
     public CircularHitbox copy() {
-        return new CircularHitbox(center, radius);
+        return new CircularHitbox(center.copy(), radius);
     }
 }
