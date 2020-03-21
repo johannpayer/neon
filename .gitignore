@@ -8,3 +8,4 @@
 *.iws
 *.xml
 /bin/
+/out/
