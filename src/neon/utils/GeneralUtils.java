@@ -93,13 +93,13 @@ public class GeneralUtils {
     }
 
     /**
-     * Reads all the lines of text from a file.
+     * Reads lines of text from a file.
      *
      * @param path    the path of the file
      * @param charset the charset to be used to decode the data
      * @return a list of strings containing the text in the file or null if the file does not exist
      */
-    public static List<String> readAllLines(String path, Charset charset) {
+    public static List<String> readLines(String path, Charset charset) {
         Path pathObj = Paths.get(path);
         if (Files.exists(pathObj))
             try {
@@ -111,13 +111,13 @@ public class GeneralUtils {
     }
 
     /**
-     * Reads all the text from a file.
+     * Reads text from a file.
      *
      * @param path    the path of the file
      * @param charset the charset to be used to decode the data
      * @return the text in the file or null if the file does not exist
      */
-    public static String readAllText(String path, Charset charset) {
+    public static String readText(String path, Charset charset) {
         Path pathObj = Paths.get(path);
         if (Files.exists(pathObj))
             try {
