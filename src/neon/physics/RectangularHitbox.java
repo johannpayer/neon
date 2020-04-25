@@ -3,7 +3,6 @@ package neon.physics;
 import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
 import neon.utils.GeneralUtils;
-
 import java.awt.image.BufferedImage;
 
 /**
@@ -93,15 +92,17 @@ public class RectangularHitbox extends Hitbox {
         boolean intersects = intersectsHitbox(other);
         if (intersects) {
             Vector2D difference = center.safeSubtract(other.getCenter());
-            if (Math.abs(difference.getX()) >= Math.abs(difference.getY()))
-                if (difference.getX() < 0)
+            if (Math.abs(difference.getX()) >= Math.abs(difference.getY())) {
+                if (difference.getX() < 0) {
                     setHigherXBound(other.getLowerXBound());
-                else
+                } else {
                     setLowerXBound(other.getHigherXBound());
-            else if (difference.getY() < 0)
+                }
+            } else if (difference.getY() < 0) {
                 setHigherYBound(other.getLowerYBound());
-            else
+            } else {
                 setLowerYBound(other.getHigherYBound());
+            }
         }
 
         return intersects;

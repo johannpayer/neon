@@ -1,8 +1,7 @@
 package neon.input;
 
-import neon.physics.Vector2D;
-
 import javax.swing.SwingUtilities;
+import neon.physics.Vector2D;
 import java.awt.event.MouseEvent;
 
 /**
@@ -19,12 +18,15 @@ public class MouseInteraction {
     }
 
     private static MouseButtonType getMouseButtonType(MouseEvent event) {
-        if (SwingUtilities.isLeftMouseButton(event))
+        if (SwingUtilities.isLeftMouseButton(event)) {
             return MouseButtonType.LEFT;
-        if (SwingUtilities.isMiddleMouseButton(event))
+        }
+        if (SwingUtilities.isMiddleMouseButton(event)) {
             return MouseButtonType.MIDDLE;
-        if (SwingUtilities.isRightMouseButton(event))
+        }
+        if (SwingUtilities.isRightMouseButton(event)) {
             return MouseButtonType.RIGHT;
+        }
         return MouseButtonType.OTHER;
     }
 }

@@ -4,7 +4,6 @@ import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
 import neon.physics.Hitbox;
 import neon.physics.RectangularHitbox;
-
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -20,8 +19,9 @@ public class RenderSystem {
      */
     public static void drawRectangle(Graphics graphics, Rectangle rectangle) {
         Color color = rectangle.getColor();
-        if (color != null)
+        if (color != null) {
             graphics.setColor(color);
+        }
 
         RectangularHitbox hitbox = rectangle.getHitbox();
         GameSettings settings = NeonEngine.getSettings();
@@ -30,10 +30,11 @@ public class RenderSystem {
         int[] parameters = new int[] { (int) Math.round(hitbox.getLowerXBound() * width),
                 (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
                 (int) Math.round(hitbox.getWidth() * width), (int) Math.round(hitbox.getHeight() * height) };
-        if (rectangle.isFill())
+        if (rectangle.isFill()) {
             graphics.fillRect(parameters[0], parameters[1], parameters[2], parameters[3]);
-        else
+        } else {
             graphics.drawRect(parameters[0], parameters[1], parameters[2], parameters[3]);
+        }
     }
 
     /**
@@ -43,8 +44,9 @@ public class RenderSystem {
      * @param rectangle the rectangle to be drawn
      */
     public static void smartDrawRectangle(Graphics graphics, Rectangle rectangle) {
-        if (hitboxIsInView(rectangle.getHitbox()))
+        if (hitboxIsInView(rectangle.getHitbox())) {
             drawRectangle(graphics, rectangle);
+        }
     }
 
     /**
@@ -70,8 +72,9 @@ public class RenderSystem {
      * @param imgObj   the image to be drawn
      */
     public static void smartDrawImage(Graphics graphics, ImageObject imgObj) {
-        if (hitboxIsInView(imgObj.getHitbox()))
+        if (hitboxIsInView(imgObj.getHitbox())) {
             drawImage(graphics, imgObj);
+        }
     }
 
     /**
@@ -98,8 +101,9 @@ public class RenderSystem {
      * @param textObj  the text to be drawn
      */
     public static void smartDrawText(Graphics graphics, TextObject textObj) {
-        if (hitboxIsInView(textObj.hitbox))
+        if (hitboxIsInView(textObj.hitbox)) {
             drawText(graphics, textObj);
+        }
     }
 
     /**

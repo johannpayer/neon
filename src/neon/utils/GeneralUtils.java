@@ -24,14 +24,15 @@ public class GeneralUtils {
     public static OSType getOSType() {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
-            if ((OS.contains("mac")) || (OS.contains("darwin")))
+            if ((OS.contains("mac")) || (OS.contains("darwin"))) {
                 detectedOS = OSType.MAC_OS;
-            else if (OS.contains("win"))
+            } else if (OS.contains("win")) {
                 detectedOS = OSType.WINDOWS;
-            else if (OS.contains("nux"))
+            } else if (OS.contains("nux")) {
                 detectedOS = OSType.LINUX;
-            else
+            } else {
                 detectedOS = OSType.OTHER;
+            }
         }
         return detectedOS;
     }
@@ -72,8 +73,9 @@ public class GeneralUtils {
      */
     public static double getTotal(double[] numbers) {
         double total = 0;
-        for (double number : numbers)
+        for (double number : numbers) {
             total += number;
+        }
         return total;
     }
 
@@ -101,12 +103,13 @@ public class GeneralUtils {
      */
     public static List<String> readLines(String path, Charset charset) {
         Path pathObj = Paths.get(path);
-        if (Files.exists(pathObj))
+        if (Files.exists(pathObj)) {
             try {
                 return Files.readAllLines(pathObj, charset);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        }
         return null;
     }
 
@@ -119,12 +122,13 @@ public class GeneralUtils {
      */
     public static String readText(String path, Charset charset) {
         Path pathObj = Paths.get(path);
-        if (Files.exists(pathObj))
+        if (Files.exists(pathObj)) {
             try {
                 return new String(Files.readAllBytes(pathObj), charset);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        }
         return null;
     }
 
