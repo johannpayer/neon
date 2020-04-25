@@ -122,48 +122,81 @@ public class NeonEngine extends Canvas implements Runnable {
      */
     @Override public void run() {
         try {
+            updateInput();
+
+            // Init timing
+            double initialTime = System.nanoTime();
+            double tickDelta = 0;
+            double frameDelta = 0;
+
             while (loop) {
-                // Inputs
-                try {
-                    Point location = MouseInfo.getPointerInfo().getLocation();
-                    InputSystem.setRawMousePosition(new Vector2D(location));
+                // Handle timing
+                double currentTime = System.nanoTime();
+                double difference = currentTime - initialTime;
+                tickDelta += difference / (1e9 / settings.tickRate);
+                frameDelta += difference / (1e9 / settings.frameRate);
+                initialTime = currentTime;
 
-                    Vector2D vector =
-                            InputSystem.getRawMousePosition().safeSubtract(new Vector2D(getPositionOnScreen()));
-                    vector.convertCoordinateSystem();
-                    InputSystem.setMousePosition(vector);
-                } catch (Exception ex) {
-                    // Ignore
-                }
-                InputSystem.update();
-
-                // Tick
-                game.tick();
-
-                // Render
-                if (settings.createWindow) {
-                    BufferStrategy bufferStrategy = getBufferStrategy();
-                    Graphics graphics = bufferStrategy.getDrawGraphics();
-                    do {
-                        try {
-                            graphics.clearRect(0, 0, settings.getWidth(), settings.getHeight());
-                            game.render(graphics);
-                        } finally {
-                            assert graphics != null;
-                            graphics.dispose();
-                        }
-                        bufferStrategy.show();
-                    } while (bufferStrategy.contentsLost());
-                } else {
-                    game.render(null);
+                if (tickDelta >= 1) {
+                    game.tick();
+                    tickDelta--;
                 }
 
-                // Sleep
-                Thread.sleep((long) (1000 / settings.tickRate));
+                if (frameDelta >= 1) {
+                    updateFrame();
+                    frameDelta--;
+                }
+
+                if (settings.sleepThread) {
+                    //noinspection BusyWait
+                    try {
+                        Thread.sleep((long) (Math.min((1 - tickDelta) * (1e9 / settings.tickRate),
+                                (1 - frameDelta) * (1e9 / settings.frameRate)) / 1e6));
+                    } catch (Exception ex) {
+                        // Ignore
+                    }
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void updateFrame() {
+        updateInput();
+
+        // Render
+        if (settings.createWindow) {
+            BufferStrategy bufferStrategy = getBufferStrategy();
+            Graphics graphics = bufferStrategy.getDrawGraphics();
+            do {
+                try {
+                    graphics.clearRect(0, 0, settings.getWidth(), settings.getHeight());
+                    game.render(graphics);
+                } finally {
+                    assert graphics != null;
+                    graphics.dispose();
+                }
+                bufferStrategy.show();
+            } while (bufferStrategy.contentsLost());
+        } else {
+            game.render(null);
+        }
+    }
+
+    private void updateInput() {
+        // Inputs
+        try {
+            Point location = MouseInfo.getPointerInfo().getLocation();
+            InputSystem.setRawMousePosition(new Vector2D(location));
+
+            Vector2D vector = InputSystem.getRawMousePosition().safeSubtract(new Vector2D(getPositionOnScreen()));
+            vector.convertCoordinateSystem();
+            InputSystem.setMousePosition(vector);
+        } catch (Exception ex) {
+            // Ignore
+        }
+        InputSystem.update();
     }
 
     private void start() {
