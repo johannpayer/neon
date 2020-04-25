@@ -117,14 +117,13 @@ public class GeneralUtils {
      * Reads text from a file.
      *
      * @param path    the path of the file
-     * @param charset the charset to be used to decode the data
      * @return the text in the file or null if the file does not exist
      */
-    public static String readText(String path, Charset charset) {
+    public static String readText(String path) {
         Path pathObj = Paths.get(path);
         if (Files.exists(pathObj)) {
             try {
-                return new String(Files.readAllBytes(pathObj), charset);
+                return Files.readString(pathObj);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -137,12 +136,11 @@ public class GeneralUtils {
      *
      * @param text    the text
      * @param path    the path of the file
-     * @param charset the charset to be used to encode the data
      * @return whether the operation was successful
      */
-    public static boolean writeText(String text, String path, Charset charset) {
+    public static boolean writeText(String text, String path) {
         try {
-            Files.write(Paths.get(path), text.getBytes(charset));
+            Files.writeString(Paths.get(path), text);
             return true;
         } catch (IOException ex) {
             return false;

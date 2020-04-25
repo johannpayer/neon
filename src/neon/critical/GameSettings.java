@@ -9,6 +9,8 @@ public class GameSettings {
     public final boolean maximize;
     public final boolean undecorated;
     public final double tickRate;
+    public final double frameRate;
+    public final boolean sleepThread;
     public final boolean createWindow;
     private final int buffers;
     private int width;
@@ -22,12 +24,14 @@ public class GameSettings {
      * @param width        the width of the window in pixels
      * @param height       the height of the window in pixels
      * @param tickRate     the number of ticks per second
+     * @param frameRate    the number of frames per secon
+     * @param sleepThread  whether the thread should be sleeped
      * @param buffers      the number of buffer frames
      * @param createWindow whether the game library should create a window; if set to "false", the "render" method for
      *                     the game will not be called
      */
     public GameSettings(String title, boolean fullscreen, boolean undecorated, boolean maximize, int width, int height,
-            double tickRate, int buffers, boolean createWindow) {
+            double tickRate, double frameRate, boolean sleepThread, int buffers, boolean createWindow) {
         this.title = title;
         this.fullscreen = fullscreen;
         this.undecorated = undecorated;
@@ -35,6 +39,8 @@ public class GameSettings {
         this.width = width;
         this.height = height;
         this.tickRate = tickRate;
+        this.frameRate = frameRate;
+        this.sleepThread = sleepThread;
         this.buffers = buffers;
         this.createWindow = createWindow;
     }
