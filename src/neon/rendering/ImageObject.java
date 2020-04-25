@@ -1,7 +1,6 @@
 package neon.rendering;
 
 import neon.physics.Hitbox;
-
 import java.awt.image.BufferedImage;
 
 /**

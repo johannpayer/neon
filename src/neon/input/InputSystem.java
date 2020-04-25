@@ -1,7 +1,6 @@
 package neon.input;
 
 import neon.physics.Vector2D;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -18,13 +17,12 @@ public class InputSystem {
     private static final ArrayList<KeyInteraction> keyReleaseQueue = new ArrayList<>();
     private static final ArrayList<KeyInteraction> keyTypeQueue = new ArrayList<>();
     private static final ArrayList<KeyInteraction> keyHeldQueue = new ArrayList<>();
+    private static final List<MouseInteraction> mousePressQueue = new ArrayList<>();
+    private static final List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
     private static boolean leftMBHeld;
     private static boolean middleMBHeld;
     private static boolean rightMBHeld;
     private static boolean otherMBHeld;
-
-    private static final List<MouseInteraction> mousePressQueue = new ArrayList<>();
-    private static final List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
     private static Vector2D rawMousePosition;
     private static Vector2D mousePosition;
     private static KeyInteraction[] keyPresses;
@@ -230,8 +228,9 @@ public class InputSystem {
         @Override public void keyPressed(KeyEvent event) {
             KeyInteraction interaction = new KeyInteraction(event);
             keyPressQueue.add(interaction);
-            if (!keyHeld(event.getKeyCode()))
+            if (!keyHeld(event.getKeyCode())) {
                 keyHeldQueue.add(interaction);
+            }
         }
 
         /**

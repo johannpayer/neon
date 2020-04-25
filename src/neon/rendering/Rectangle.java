@@ -1,8 +1,6 @@
 package neon.rendering;
 
 import neon.physics.RectangularHitbox;
-import neon.physics.Vector2D;
-
 import java.awt.Color;
 
 /**

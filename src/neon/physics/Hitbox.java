@@ -95,14 +95,16 @@ public abstract class Hitbox {
      * @param highY the high Y bound
      */
     public void keepWithinBounds(double lowX, double highX, double lowY, double highY) {
-        if (getLowerXBound() < lowX)
+        if (getLowerXBound() < lowX) {
             setLowerXBound(lowX);
-        else if (getHigherXBound() > highX)
+        } else if (getHigherXBound() > highX) {
             setHigherXBound(highX);
-        if (getLowerYBound() < lowY)
+        }
+        if (getLowerYBound() < lowY) {
             setLowerYBound(lowY);
-        else if (getHigherYBound() > highY)
+        } else if (getHigherYBound() > highY) {
             setHigherYBound(highY);
+        }
     }
 
     /**

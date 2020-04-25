@@ -2,7 +2,6 @@ package neon.physics;
 
 import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
-
 import java.awt.Point;
 
 /**

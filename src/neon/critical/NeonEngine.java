@@ -1,12 +1,11 @@
 package neon.critical;
 
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import neon.input.InputSystem;
 import neon.physics.Vector2D;
 import neon.utils.GeneralUtils;
 import neon.utils.OSType;
-
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -49,8 +48,9 @@ public class NeonEngine extends Canvas implements Runnable {
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
             if (settings.fullscreen && GeneralUtils.getOSType() == OSType.MAC_OS &&
-                    graphicsDevice.isFullScreenSupported())
+                    graphicsDevice.isFullScreenSupported()) {
                 graphicsDevice.setFullScreenWindow(frame);
+            }
             frame.setUndecorated(settings.undecorated);
             frame.setResizable(false);
             frame.pack();
@@ -105,8 +105,9 @@ public class NeonEngine extends Canvas implements Runnable {
      * @param frame the frame
      */
     public static void setFrame(JFrame frame) {
-        if (!settings.createWindow)
+        if (!settings.createWindow) {
             NeonEngine.frame = frame;
+        }
     }
 
     /**
@@ -153,8 +154,9 @@ public class NeonEngine extends Canvas implements Runnable {
                         }
                         bufferStrategy.show();
                     } while (bufferStrategy.contentsLost());
-                } else
+                } else {
                     game.render(null);
+                }
 
                 // Sleep
                 Thread.sleep((long) (1000 / settings.tickRate));
