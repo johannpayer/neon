@@ -103,12 +103,10 @@ public class GeneralUtils {
      */
     public static List<String> readLines(String path, Charset charset) {
         Path pathObj = Paths.get(path);
-        if (Files.exists(pathObj)) {
-            try {
-                return Files.readAllLines(pathObj, charset);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        try {
+            return Files.readAllLines(pathObj, charset);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return null;
     }
@@ -116,17 +114,15 @@ public class GeneralUtils {
     /**
      * Reads text from a file.
      *
-     * @param path    the path of the file
+     * @param path the path of the file
      * @return the text in the file or null if the file does not exist
      */
     public static String readText(String path) {
         Path pathObj = Paths.get(path);
-        if (Files.exists(pathObj)) {
-            try {
-                return Files.readString(pathObj);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        try {
+            return Files.readString(pathObj);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return null;
     }
@@ -134,8 +130,8 @@ public class GeneralUtils {
     /**
      * Writes text to a file.
      *
-     * @param text    the text
-     * @param path    the path of the file
+     * @param text the text
+     * @param path the path of the file
      * @return whether the operation was successful
      */
     public static boolean writeText(String text, String path) {

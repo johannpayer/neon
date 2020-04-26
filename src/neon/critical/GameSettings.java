@@ -24,7 +24,7 @@ public class GameSettings {
      * @param width        the width of the window in pixels
      * @param height       the height of the window in pixels
      * @param tickRate     the number of ticks per second
-     * @param frameRate    the number of frames per secon
+     * @param frameRate    the number of frames per second
      * @param sleepThread  whether the thread should be sleeped
      * @param buffers      the number of buffer frames
      * @param createWindow whether the game library should create a window; if set to "false", the "render" method for
