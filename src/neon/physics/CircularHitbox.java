@@ -1,7 +1,6 @@
 package neon.physics;
 
-import neon.critical.GameSettings;
-import neon.critical.NeonEngine;
+import neon.rendering.Units;
 
 /**
  * A class used to simulate the physics and interactions of circular hitboxes.
@@ -62,10 +61,9 @@ public class CircularHitbox extends Hitbox {
      * @param radius the new radius
      */
     public void setRadiusWidth(double radius) {
-        GameSettings settings = NeonEngine.getSettings();
         this.radius = radius;
         width = radius * 2;
-        height = width * settings.getWidth() / settings.getHeight();
+        height = Units.toHeight(width);
     }
 
     /**
@@ -74,17 +72,14 @@ public class CircularHitbox extends Hitbox {
      * @param radius the new radius
      */
     public void setRadiusHeight(double radius) {
-        GameSettings settings = NeonEngine.getSettings();
-        this.radius = radius * settings.getHeight() / settings.getWidth();
+        this.radius = Units.toWidth(radius);
         width = this.radius * 2;
         height = radius * 2;
     }
 
     public boolean containsVector(Vector2D vector) {
-        GameSettings settings = NeonEngine.getSettings();
         Vector2D difference = center.safeSubtract(vector);
-        return Math.sqrt(Math.pow(difference.getX(), 2) +
-                Math.pow(difference.getY() * settings.getHeight() / settings.getWidth(), 2)) <= radius;
+        return Math.sqrt(Math.pow(difference.getX(), 2) + Math.pow(Units.toWidth(difference.getY()), 2)) <= radius;
     }
 
     /**

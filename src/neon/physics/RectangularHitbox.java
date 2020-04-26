@@ -62,7 +62,7 @@ public class RectangularHitbox extends Hitbox {
     }
 
     /**
-     * Sets the collider's width
+     * Sets the collider's width.
      *
      * @param width the new width
      */
@@ -75,7 +75,7 @@ public class RectangularHitbox extends Hitbox {
     }
 
     /**
-     * Sets the collider's height
+     * Sets the collider's height.
      *
      * @param height the new height
      */
