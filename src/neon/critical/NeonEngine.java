@@ -148,8 +148,8 @@ public class NeonEngine extends Canvas implements Runnable {
                 }
 
                 if (settings.sleepThread) {
-                    //noinspection BusyWait
                     try {
+                        //noinspection BusyWait
                         Thread.sleep((long) (Math.min((1 - tickDelta) * (1e9 / settings.tickRate),
                                 (1 - frameDelta) * (1e9 / settings.frameRate)) / 1e6));
                     } catch (Exception ex) {
