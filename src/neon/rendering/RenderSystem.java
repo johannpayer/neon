@@ -44,7 +44,7 @@ public class RenderSystem {
      * @param rectangle the rectangle to be drawn
      */
     public static void smartDrawRectangle(Graphics graphics, Rectangle rectangle) {
-        if (hitboxIsInView(rectangle.getHitbox())) {
+        if (isHitboxInView(rectangle.getHitbox())) {
             drawRectangle(graphics, rectangle);
         }
     }
@@ -72,7 +72,7 @@ public class RenderSystem {
      * @param imgObj   the image to be drawn
      */
     public static void smartDrawImage(Graphics graphics, ImageObject imgObj) {
-        if (hitboxIsInView(imgObj.getHitbox())) {
+        if (isHitboxInView(imgObj.getHitbox())) {
             drawImage(graphics, imgObj);
         }
     }
@@ -101,7 +101,7 @@ public class RenderSystem {
      * @param textObj  the text to be drawn
      */
     public static void smartDrawText(Graphics graphics, TextObject textObj) {
-        if (hitboxIsInView(textObj.hitbox)) {
+        if (isHitboxInView(textObj.hitbox)) {
             drawText(graphics, textObj);
         }
     }
@@ -110,7 +110,7 @@ public class RenderSystem {
      * @param hitbox the specified hitbox
      * @return whether the hitbox is within view
      */
-    public static boolean hitboxIsInView(Hitbox hitbox) {
+    public static boolean isHitboxInView(Hitbox hitbox) {
         return !(hitbox.getHigherXBound() < 0 || hitbox.getLowerXBound() > 1 || hitbox.getHigherYBound() < 0 ||
                 hitbox.getLowerYBound() > 1);
     }
