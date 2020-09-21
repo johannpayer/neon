@@ -143,28 +143,28 @@ public class InputSystem {
     /**
      * @return whether the left mouse button is currently being held
      */
-    public static boolean isLeftMouseButtonHeld() {
+    public static boolean leftMouseButtonHeld() {
         return leftMBHeld;
     }
 
     /**
      * @return whether the middle mouse button is currently being held
      */
-    public static boolean isMiddleMouseButtonHeld() {
+    public static boolean middleMouseButtonHeld() {
         return middleMBHeld;
     }
 
     /**
      * @return whether the right mouse button is currently being held
      */
-    public static boolean isRightMouseButtonHeld() {
+    public static boolean rightMouseButtonHeld() {
         return rightMBHeld;
     }
 
     /**
      * @return whether another mouse button is currently being held
      */
-    public static boolean isOtherMouseButtonHeld() {
+    public static boolean otherMouseButtonHeld() {
         return otherMBHeld;
     }
 
