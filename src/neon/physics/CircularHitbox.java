@@ -10,7 +10,7 @@ public class CircularHitbox extends Hitbox {
     private double width;
     private double height;
 
-    public CircularHitbox(Vector2D center, double radius) {
+    public CircularHitbox(Vector2d center, double radius) {
         this.center = center;
         this.radius = radius;
     }
@@ -77,8 +77,8 @@ public class CircularHitbox extends Hitbox {
         height = radius * 2;
     }
 
-    public boolean containsVector(Vector2D vector) {
-        Vector2D difference = center.safeSubtract(vector);
+    public boolean containsVector(Vector2d vector) {
+        Vector2d difference = center.safeSubtract(vector);
         return Math.sqrt(Math.pow(difference.getX(), 2) + Math.pow(Units.toWidth(difference.getY()), 2)) <= radius;
     }
 

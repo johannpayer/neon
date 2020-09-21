@@ -16,22 +16,22 @@ import java.util.Locale;
  * A class used to perform many miscellaneous operations.
  */
 public class GeneralUtils {
-    private static OSType detectedOS;
+    private static OsType detectedOS;
 
     /**
      * @return an enumeration specifying the operating system type
      */
-    public static OSType getOSType() {
+    public static OsType getOSType() {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
             if ((OS.contains("mac")) || (OS.contains("darwin"))) {
-                detectedOS = OSType.MAC_OS;
+                detectedOS = OsType.MAC_OS;
             } else if (OS.contains("win")) {
-                detectedOS = OSType.WINDOWS;
+                detectedOS = OsType.WINDOWS;
             } else if (OS.contains("nux")) {
-                detectedOS = OSType.LINUX;
+                detectedOS = OsType.LINUX;
             } else {
-                detectedOS = OSType.OTHER;
+                detectedOS = OsType.OTHER;
             }
         }
         return detectedOS;

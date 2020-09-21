@@ -7,16 +7,16 @@ import java.awt.Point;
 /**
  * A two-dimensional vector with two values: x and y.
  */
-public class Vector2D {
+public class Vector2d {
     private double x;
     private double y;
 
-    public Vector2D(double x, double y) {
+    public Vector2d(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public Vector2D(Point point) {
+    public Vector2d(Point point) {
         this(point.getX(), point.getY());
     }
 
@@ -66,7 +66,7 @@ public class Vector2D {
      *
      * @param other the other vector
      */
-    public void add(Vector2D other) {
+    public void add(Vector2d other) {
         add(other.x, other.y);
     }
 
@@ -86,7 +86,7 @@ public class Vector2D {
      *
      * @param other the other vector
      */
-    public void subtract(Vector2D other) {
+    public void subtract(Vector2d other) {
         subtract(other.x, other.y);
     }
 
@@ -106,7 +106,7 @@ public class Vector2D {
      *
      * @param other the other vector
      */
-    public void multiply(Vector2D other) {
+    public void multiply(Vector2d other) {
         multiply(other.x, other.y);
     }
 
@@ -126,7 +126,7 @@ public class Vector2D {
      *
      * @param other the other vector
      */
-    public void divide(Vector2D other) {
+    public void divide(Vector2d other) {
         divide(other.x, other.y);
     }
 
@@ -147,7 +147,7 @@ public class Vector2D {
      * @param other the other vector
      * @return the result of the operation
      */
-    public Vector2D safeAdd(Vector2D other) {
+    public Vector2d safeAdd(Vector2d other) {
         return safeAdd(other.x, other.y);
     }
 
@@ -158,8 +158,8 @@ public class Vector2D {
      * @param y the y-value
      * @return the result of the operation
      */
-    public Vector2D safeAdd(double x, double y) {
-        return new Vector2D(this.x + x, this.y + y);
+    public Vector2d safeAdd(double x, double y) {
+        return new Vector2d(this.x + x, this.y + y);
     }
 
     /**
@@ -168,7 +168,7 @@ public class Vector2D {
      * @param other the other vector
      * @return the result of the operation
      */
-    public Vector2D safeSubtract(Vector2D other) {
+    public Vector2d safeSubtract(Vector2d other) {
         return safeSubtract(other.x, other.y);
     }
 
@@ -179,8 +179,8 @@ public class Vector2D {
      * @param y the y-value
      * @return the result of the operation
      */
-    public Vector2D safeSubtract(double x, double y) {
-        return new Vector2D(this.x - x, this.y - y);
+    public Vector2d safeSubtract(double x, double y) {
+        return new Vector2d(this.x - x, this.y - y);
     }
 
     /**
@@ -189,7 +189,7 @@ public class Vector2D {
      * @param other the other vector
      * @return the result of the operation
      */
-    public Vector2D safeMultiply(Vector2D other) {
+    public Vector2d safeMultiply(Vector2d other) {
         return safeMultiply(other.x, other.y);
     }
 
@@ -200,8 +200,8 @@ public class Vector2D {
      * @param y the y-value
      * @return the result of the operation
      */
-    public Vector2D safeMultiply(double x, double y) {
-        return new Vector2D(this.x * x, this.y * y);
+    public Vector2d safeMultiply(double x, double y) {
+        return new Vector2d(this.x * x, this.y * y);
     }
 
     /**
@@ -210,7 +210,7 @@ public class Vector2D {
      * @param other the other vector
      * @return the result of the operation
      */
-    public Vector2D safeDivide(Vector2D other) {
+    public Vector2d safeDivide(Vector2d other) {
         return safeDivide(other.x, other.y);
     }
 
@@ -221,14 +221,14 @@ public class Vector2D {
      * @param y the y-value
      * @return the result of the operation
      */
-    public Vector2D safeDivide(double x, double y) {
-        return new Vector2D(this.x / x, this.y / y);
+    public Vector2d safeDivide(double x, double y) {
+        return new Vector2d(this.x / x, this.y / y);
     }
 
     /**
      * @return a copy of the object
      */
-    public Vector2D copy() {
-        return new Vector2D(x, y);
+    public Vector2d copy() {
+        return new Vector2d(x, y);
     }
 }

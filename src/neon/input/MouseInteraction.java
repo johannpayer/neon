@@ -1,7 +1,7 @@
 package neon.input;
 
 import javax.swing.SwingUtilities;
-import neon.physics.Vector2D;
+import neon.physics.Vector2d;
 import java.awt.event.MouseEvent;
 
 /**
@@ -9,11 +9,11 @@ import java.awt.event.MouseEvent;
  */
 public class MouseInteraction {
     public final MouseButtonType mouseButtonType;
-    public final Vector2D position;
+    public final Vector2d position;
 
     public MouseInteraction(MouseEvent event) {
         mouseButtonType = getMouseButtonType(event);
-        position = new Vector2D(event.getPoint());
+        position = new Vector2d(event.getPoint());
         position.convertCoordinateSystem();
     }
 

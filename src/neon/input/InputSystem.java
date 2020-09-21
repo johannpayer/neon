@@ -1,6 +1,6 @@
 package neon.input;
 
-import neon.physics.Vector2D;
+import neon.physics.Vector2d;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -23,8 +23,8 @@ public class InputSystem {
     private static boolean middleMBHeld;
     private static boolean rightMBHeld;
     private static boolean otherMBHeld;
-    private static Vector2D rawMousePosition;
-    private static Vector2D mousePosition;
+    private static Vector2d rawMousePosition;
+    private static Vector2d mousePosition;
     private static KeyInteraction[] keyPresses;
     private static KeyInteraction[] keyReleases;
     private static KeyInteraction[] keysTyped;
@@ -91,7 +91,7 @@ public class InputSystem {
      *
      * @return the raw mouse position
      */
-    public static Vector2D getRawMousePosition() {
+    public static Vector2d getRawMousePosition() {
         return rawMousePosition;
     }
 
@@ -100,7 +100,7 @@ public class InputSystem {
      *
      * @param rawMousePosition the new raw mouse position
      */
-    public static void setRawMousePosition(Vector2D rawMousePosition) {
+    public static void setRawMousePosition(Vector2d rawMousePosition) {
         InputSystem.rawMousePosition = rawMousePosition;
     }
 
@@ -109,7 +109,7 @@ public class InputSystem {
      *
      * @return the mouse position
      */
-    public static Vector2D getMousePosition() {
+    public static Vector2d getMousePosition() {
         return mousePosition;
     }
 
@@ -118,7 +118,7 @@ public class InputSystem {
      *
      * @param mousePosition the new mouse position
      */
-    public static void setMousePosition(Vector2D mousePosition) {
+    public static void setMousePosition(Vector2d mousePosition) {
         InputSystem.mousePosition = mousePosition;
     }
 
@@ -143,28 +143,28 @@ public class InputSystem {
     /**
      * @return whether the left mouse button is currently being held
      */
-    public static boolean leftMouseButtonHeld() {
+    public static boolean isLeftMouseButtonHeld() {
         return leftMBHeld;
     }
 
     /**
      * @return whether the middle mouse button is currently being held
      */
-    public static boolean middleMouseButtonHeld() {
+    public static boolean isMiddleMouseButtonHeld() {
         return middleMBHeld;
     }
 
     /**
      * @return whether the right mouse button is currently being held
      */
-    public static boolean rightMouseButtonHeld() {
+    public static boolean isRightMouseButtonHeld() {
         return rightMBHeld;
     }
 
     /**
      * @return whether another mouse button is currently being held
      */
-    public static boolean otherMouseButtonHeld() {
+    public static boolean isOtherMouseButtonHeld() {
         return otherMBHeld;
     }
 
@@ -172,7 +172,7 @@ public class InputSystem {
      * @param character the character
      * @return whether the key matching the character is currently being held
      */
-    public static boolean keyHeld(char character) {
+    public static boolean isKeyHeld(char character) {
         return Arrays.stream(keysHeld).anyMatch(x -> x.character == character);
     }
 
@@ -180,7 +180,7 @@ public class InputSystem {
      * @param keyCode the key code
      * @return whether the key matching the key code is currently being held
      */
-    public static boolean keyHeld(int keyCode) {
+    public static boolean isKeyHeld(int keyCode) {
         return Arrays.stream(keysHeld).anyMatch(x -> x.keyCode == keyCode);
     }
 
@@ -228,7 +228,7 @@ public class InputSystem {
         @Override public void keyPressed(KeyEvent event) {
             KeyInteraction interaction = new KeyInteraction(event);
             keyPressQueue.add(interaction);
-            if (!keyHeld(event.getKeyCode())) {
+            if (!isKeyHeld(event.getKeyCode())) {
                 keyHeldQueue.add(interaction);
             }
         }

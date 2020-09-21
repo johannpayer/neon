@@ -4,7 +4,7 @@ package neon.physics;
  * An interface for hitboxes.
  */
 public abstract class Hitbox {
-    protected Vector2D center;
+    protected Vector2d center;
 
     /**
      * @return the lowest x-value contained in the hitbox
@@ -57,7 +57,7 @@ public abstract class Hitbox {
     /**
      * @return the hitbox's center
      */
-    public Vector2D getCenter() {
+    public Vector2d getCenter() {
         return center;
     }
 
@@ -66,7 +66,7 @@ public abstract class Hitbox {
      *
      * @param center the new position
      */
-    public void setCenter(Vector2D center) {
+    public void setCenter(Vector2d center) {
         this.center = center;
     }
 
@@ -84,7 +84,7 @@ public abstract class Hitbox {
      * @param vector the specified vector
      * @return whether the hitbox contains the vector
      */
-    public abstract boolean containsVector(Vector2D vector);
+    public abstract boolean containsVector(Vector2d vector);
 
     /**
      * Shifts the hitbox so that it fits within the specified bounds.

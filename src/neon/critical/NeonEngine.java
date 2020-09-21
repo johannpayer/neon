@@ -3,9 +3,9 @@ package neon.critical;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import neon.input.InputSystem;
-import neon.physics.Vector2D;
+import neon.physics.Vector2d;
 import neon.utils.GeneralUtils;
-import neon.utils.OSType;
+import neon.utils.OsType;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -47,7 +47,7 @@ public class NeonEngine extends Canvas implements Runnable {
             frame.add(instance);
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-            if (settings.fullscreen && GeneralUtils.getOSType() == OSType.MAC_OS &&
+            if (settings.fullscreen && GeneralUtils.getOSType() == OsType.MAC_OS &&
                     graphicsDevice.isFullScreenSupported()) {
                 graphicsDevice.setFullScreenWindow(frame);
             }
@@ -188,9 +188,9 @@ public class NeonEngine extends Canvas implements Runnable {
         // Inputs
         try {
             Point location = MouseInfo.getPointerInfo().getLocation();
-            InputSystem.setRawMousePosition(new Vector2D(location));
+            InputSystem.setRawMousePosition(new Vector2d(location));
 
-            Vector2D vector = InputSystem.getRawMousePosition().safeSubtract(new Vector2D(getPositionOnScreen()));
+            Vector2d vector = InputSystem.getRawMousePosition().safeSubtract(new Vector2d(getPositionOnScreen()));
             vector.convertCoordinateSystem();
             InputSystem.setMousePosition(vector);
         } catch (Exception ex) {
