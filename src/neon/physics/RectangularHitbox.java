@@ -88,7 +88,7 @@ public class RectangularHitbox extends Hitbox {
                 GeneralUtils.isWithinRange(vector.getY(), getLowerYBound(), getHigherYBound());
     }
 
-    public boolean preventIntersection(Hitbox other) {
+    public boolean unintersect(Hitbox other) {
         boolean intersects = intersectsHitbox(other);
         if (intersects) {
             Vector2d difference = center.safeSubtract(other.getCenter());

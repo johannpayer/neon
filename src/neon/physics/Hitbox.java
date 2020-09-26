@@ -115,12 +115,12 @@ public abstract class Hitbox {
 
     /**
      * Shifts the hitbox in order to prevent it from intersecting with another
-     * hitbox.
+     * hitbox. When shifting, the hitbox takes the path of least resistance.
      *
      * @param other the other hitbox
      * @return whether the hitboxes collided
      */
-    public abstract boolean preventIntersection(Hitbox other) throws UnsupportedOperationException;
+    public abstract boolean unintersect(Hitbox other) throws UnsupportedOperationException;
 
     /**
      * @return a copy of the object

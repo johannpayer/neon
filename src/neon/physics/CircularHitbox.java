@@ -88,7 +88,7 @@ public class CircularHitbox extends Hitbox {
      * @param other the other hitbox
      * @throws UnsupportedOperationException always
      */
-    public boolean preventIntersection(Hitbox other) throws UnsupportedOperationException {
+    public boolean unintersect(Hitbox other) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("This method is not currently implemented.");
     }
 
