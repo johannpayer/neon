@@ -1,6 +1,6 @@
 package neon.input;
 
-import neon.physics.Vector2d;
+import neon.physics.Vector2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -23,8 +23,8 @@ public class InputSystem {
     private static boolean middleMBHeld;
     private static boolean rightMBHeld;
     private static boolean otherMBHeld;
-    private static Vector2d rawMousePosition;
-    private static Vector2d mousePosition;
+    private static Vector2D rawMousePosition;
+    private static Vector2D mousePosition;
     private static KeyInteraction[] keyPresses;
     private static KeyInteraction[] keyReleases;
     private static KeyInteraction[] keysTyped;
@@ -91,7 +91,7 @@ public class InputSystem {
      *
      * @return the raw mouse position
      */
-    public static Vector2d getRawMousePosition() {
+    public static Vector2D getRawMousePosition() {
         return rawMousePosition;
     }
 
@@ -100,7 +100,7 @@ public class InputSystem {
      *
      * @param rawMousePosition the new raw mouse position
      */
-    public static void setRawMousePosition(Vector2d rawMousePosition) {
+    public static void setRawMousePosition(Vector2D rawMousePosition) {
         InputSystem.rawMousePosition = rawMousePosition;
     }
 
@@ -109,7 +109,7 @@ public class InputSystem {
      *
      * @return the mouse position
      */
-    public static Vector2d getMousePosition() {
+    public static Vector2D getMousePosition() {
         return mousePosition;
     }
 
@@ -118,7 +118,7 @@ public class InputSystem {
      *
      * @param mousePosition the new mouse position
      */
-    public static void setMousePosition(Vector2d mousePosition) {
+    public static void setMousePosition(Vector2D mousePosition) {
         InputSystem.mousePosition = mousePosition;
     }
 

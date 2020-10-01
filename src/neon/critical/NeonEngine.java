@@ -3,7 +3,7 @@ package neon.critical;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import neon.input.InputSystem;
-import neon.physics.Vector2d;
+import neon.physics.Vector2D;
 import neon.utils.GeneralUtils;
 import neon.utils.OsType;
 import java.awt.Canvas;
@@ -188,9 +188,9 @@ public class NeonEngine extends Canvas implements Runnable {
         // Inputs
         try {
             Point location = MouseInfo.getPointerInfo().getLocation();
-            InputSystem.setRawMousePosition(new Vector2d(location));
+            InputSystem.setRawMousePosition(new Vector2D(location));
 
-            Vector2d vector = InputSystem.getRawMousePosition().safeSubtract(new Vector2d(getPositionOnScreen()));
+            Vector2D vector = InputSystem.getRawMousePosition().safeSubtract(new Vector2D(getPositionOnScreen()));
             vector.convertCoordinateSystem();
             InputSystem.setMousePosition(vector);
         } catch (Exception ex) {

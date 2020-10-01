@@ -1,7 +1,7 @@
 package neon.rendering;
 
 import neon.physics.RectangularHitbox;
-import neon.physics.Vector2d;
+import neon.physics.Vector2D;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -25,7 +25,7 @@ public class TextObject {
      * @param color    the color of the text
      * @param graphics the graphics used to determine the size of the text
      */
-    public TextObject(Vector2d position, String text, Font font, Color color, Graphics graphics) {
+    public TextObject(Vector2D position, String text, Font font, Color color, Graphics graphics) {
         this.text = text;
         this.font = font;
         this.color = color;

@@ -12,13 +12,13 @@ public class RectangularHitbox extends Hitbox {
     private double width;
     private double height;
 
-    public RectangularHitbox(Vector2d center, double width, double height) {
+    public RectangularHitbox(Vector2D center, double width, double height) {
         this.center = center;
         this.width = width;
         this.height = height;
     }
 
-    public RectangularHitbox(Vector2d center, BufferedImage image, double scale) {
+    public RectangularHitbox(Vector2D center, BufferedImage image, double scale) {
         GameSettings settings = NeonEngine.getSettings();
         this.center = center;
         width = image.getWidth() * scale / settings.getWidth();
@@ -83,7 +83,7 @@ public class RectangularHitbox extends Hitbox {
         this.height = height;
     }
 
-    public boolean containsVector(Vector2d vector) {
+    public boolean containsVector(Vector2D vector) {
         return GeneralUtils.isWithinRange(vector.getX(), getLowerXBound(), getHigherXBound()) &&
                 GeneralUtils.isWithinRange(vector.getY(), getLowerYBound(), getHigherYBound());
     }
@@ -91,7 +91,7 @@ public class RectangularHitbox extends Hitbox {
     public boolean unintersect(Hitbox other) {
         boolean intersects = intersectsHitbox(other);
         if (intersects) {
-            Vector2d difference = center.safeSubtract(other.getCenter());
+            Vector2D difference = center.safeSubtract(other.getCenter());
             if (Math.abs(difference.getX()) >= Math.abs(difference.getY())) {
                 if (difference.getX() < 0) {
                     setHigherXBound(other.getLowerXBound());
@@ -110,7 +110,7 @@ public class RectangularHitbox extends Hitbox {
 
     public boolean intersectsHitbox(Hitbox other) {
         assert other instanceof RectangularHitbox;
-        Vector2d difference = center.safeSubtract(other.getCenter());
+        Vector2D difference = center.safeSubtract(other.getCenter());
         return Math.abs(difference.getX()) < GeneralUtils.getAverage(new double[] { width, other.getWidth() }) &&
                 Math.abs(difference.getY()) < GeneralUtils.getAverage(new double[] { height, other.getHeight() });
     }
