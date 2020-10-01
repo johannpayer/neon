@@ -7,32 +7,38 @@ import neon.physics.Hitbox;
  */
 public class HitboxAligner {
     /**
-     * Aligns the hitbox horizontally.
+     * Aligns the hitbox to its left.
      *
-     * @param hitbox    the hitbox
-     * @param alignment the desired alignment
+     * @param hitbox the hitbox
      */
-    public static void align(Hitbox hitbox, HorizontalAlignment alignment) {
-        double x = hitbox.getCenter().getX();
-        if (alignment == HorizontalAlignment.LEFT) {
-            hitbox.setLowerXBound(x);
-        } else {
-            hitbox.setHigherXBound(x);
-        }
+    public static void alignLeft(Hitbox hitbox) {
+        hitbox.setLowerXBound(hitbox.getCenter().getX());
     }
 
     /**
-     * Aligns the hitbox vertically.
+     * Aligns the hitbox to its right.
      *
-     * @param hitbox    the hitbox
-     * @param alignment the desired alignment
+     * @param hitbox the hitbox
      */
-    public static void align(Hitbox hitbox, VerticalAlignment alignment) {
-        double y = hitbox.getCenter().getY();
-        if (alignment == VerticalAlignment.BOTTOM) {
-            hitbox.setLowerYBound(y);
-        } else {
-            hitbox.setHigherYBound(y);
-        }
+    public static void alignRight(Hitbox hitbox) {
+        hitbox.setHigherXBound(hitbox.getCenter().getX());
+    }
+
+    /**
+     * Aligns the hitbox to its bottom.
+     *
+     * @param hitbox the hitbox
+     */
+    public static void alignBottom(Hitbox hitbox) {
+        hitbox.setLowerYBound(hitbox.getCenter().getY());
+    }
+
+    /**
+     * Aligns the hitbox to its top.
+     *
+     * @param hitbox the hitbox
+     */
+    public static void alignTop(Hitbox hitbox) {
+        hitbox.setHigherYBound(hitbox.getCenter().getY());
     }
 }
