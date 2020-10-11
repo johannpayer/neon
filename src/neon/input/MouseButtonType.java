@@ -1,8 +1,9 @@
 package neon.input;
 
-/**
- * An enumeration containing values of mouse button types.
- */
+/** An enumeration containing values of mouse button types. */
 public enum MouseButtonType {
-    LEFT, MIDDLE, RIGHT, OTHER
+  LEFT,
+  MIDDLE,
+  RIGHT,
+  OTHER
 }
