@@ -37,7 +37,7 @@ public class GeneralUtils {
    * @param value the tested value
    * @param min the minimum value
    * @param max the maximum value
-   * @return whether the value is within the specified range
+   * @return whether the value is within the specified range (inclusive)
    */
   public static boolean isWithinRange(double value, double min, double max) {
     return min <= value && value <= max;
