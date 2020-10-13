@@ -171,12 +171,12 @@ public class GeneralUtils {
    * @param number the quantity of the noun
    * @param singular the singular form of the word
    * @param plural the plural form of the word
-   * @param inclusive whether the result should include the number
+   * @param doInclude whether the result should include the number
    * @return the correct form
    */
-  public static String pluralCheck(int number, String singular, String plural, boolean inclusive) {
+  public static String pluralCheck(int number, String singular, String plural, boolean doInclude) {
     String output = number == 1 ? singular : plural;
-    return inclusive ? number + " " + output : output;
+    return doInclude ? number + " " + output : output;
   }
 
   /**
@@ -185,12 +185,12 @@ public class GeneralUtils {
    * @param number the quantity of the noun
    * @param singular the singular form of the word
    * @param plural the plural form of the word
-   * @param inclusive whether the result should include the number
+   * @param doInclude whether the result should include the number
    * @return the correct form
    */
   public static String pluralCheck(
-      double number, String singular, String plural, boolean inclusive) {
+      double number, String singular, String plural, boolean doInclude) {
     String output = number == 1 ? singular : plural;
-    return inclusive ? number + " " + output : output;
+    return doInclude ? number + " " + output : output;
   }
 }

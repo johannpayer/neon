@@ -21,7 +21,7 @@ public class NeonEngine extends Canvas implements Runnable {
   private static final long serialVersionUID = 1L;
   private static final NeonEngine instance = new NeonEngine();
   private static GameSettings settings;
-  private static boolean loop = true;
+  private static boolean doLoop = true;
   private static JFrame frame;
   private IGame game;
 
@@ -111,7 +111,7 @@ public class NeonEngine extends Canvas implements Runnable {
 
   /** Terminates the game loop. */
   public static void terminate() {
-    loop = false;
+    doLoop = false;
   }
 
   /** WARNING: Do not call this method. It is only to be called by core library classes. */
@@ -125,7 +125,7 @@ public class NeonEngine extends Canvas implements Runnable {
       double tickDelta = 0;
       double frameDelta = 0;
 
-      while (loop) {
+      while (doLoop) {
         // Handle timing
         double currentTime = System.nanoTime();
         double difference = currentTime - initialTime;

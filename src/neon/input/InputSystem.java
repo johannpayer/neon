@@ -17,10 +17,10 @@ public class InputSystem {
   private static final ArrayList<KeyInteraction> keyHeldQueue = new ArrayList<>();
   private static final List<MouseInteraction> mousePressQueue = new ArrayList<>();
   private static final List<MouseInteraction> mouseReleaseQueue = new ArrayList<>();
-  private static boolean leftMBHeld;
-  private static boolean middleMBHeld;
-  private static boolean rightMBHeld;
-  private static boolean otherMBHeld;
+  private static boolean isLeftMouseButtonHeld;
+  private static boolean isMiddleMouseButtonHeld;
+  private static boolean isRightMouseButtonHeld;
+  private static boolean isOtherMouseButtonHeld;
   private static Vector2D rawMousePosition;
   private static Vector2D mousePosition;
   private static KeyInteraction[] keyPresses;
@@ -138,22 +138,22 @@ public class InputSystem {
 
   /** @return whether the left mouse button is currently being held */
   public static boolean isLeftMouseButtonHeld() {
-    return leftMBHeld;
+    return isLeftMouseButtonHeld;
   }
 
   /** @return whether the middle mouse button is currently being held */
   public static boolean isMiddleMouseButtonHeld() {
-    return middleMBHeld;
+    return isMiddleMouseButtonHeld;
   }
 
   /** @return whether the right mouse button is currently being held */
   public static boolean isRightMouseButtonHeld() {
-    return rightMBHeld;
+    return isRightMouseButtonHeld;
   }
 
   /** @return whether another mouse button is currently being held */
   public static boolean isOtherMouseButtonHeld() {
-    return otherMBHeld;
+    return isOtherMouseButtonHeld;
   }
 
   /**
@@ -172,20 +172,21 @@ public class InputSystem {
     return Arrays.stream(keysHeld).anyMatch(x -> x.keyCode == keyCode);
   }
 
+  /** WARNING: Do not use this class. It is only to be used by core library classes. */
   public static class MouseInput extends MouseAdapter {
     private static void setMouseButtonHeld(MouseButtonType type, boolean value) {
       switch (type) {
         case LEFT:
-          leftMBHeld = value;
+          isLeftMouseButtonHeld = value;
           break;
         case MIDDLE:
-          middleMBHeld = value;
+          isMiddleMouseButtonHeld = value;
           break;
         case RIGHT:
-          rightMBHeld = value;
+          isRightMouseButtonHeld = value;
           break;
         case OTHER:
-          otherMBHeld = value;
+          isOtherMouseButtonHeld = value;
           break;
       }
     }
@@ -207,6 +208,7 @@ public class InputSystem {
     }
   }
 
+  /** WARNING: Do not use this class. It is only to be used by core library classes. */
   public static class KeyInput extends KeyAdapter {
     /** WARNING: Do not call this method. It is only to be called by core library classes. */
     @Override

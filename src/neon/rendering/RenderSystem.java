@@ -32,7 +32,7 @@ public class RenderSystem {
           (int) Math.round(hitbox.getWidth() * width),
           (int) Math.round(hitbox.getHeight() * height)
         };
-    if (rectangle.isFill()) {
+    if (rectangle.isDoFill()) {
       graphics.fillRect(parameters[0], parameters[1], parameters[2], parameters[3]);
     } else {
       graphics.drawRect(parameters[0], parameters[1], parameters[2], parameters[3]);

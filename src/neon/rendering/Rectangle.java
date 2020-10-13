@@ -7,17 +7,17 @@ import neon.physics.RectangularHitbox;
 public class Rectangle {
   private RectangularHitbox hitbox;
   private Color color;
-  private boolean fill;
+  private boolean doFill;
 
   /**
    * @param hitbox the hitbox of the rectangle
    * @param color the color of the rectangle
-   * @param fill whether the rectangle should be filled when drawn
+   * @param doFill whether the rectangle should be filled when drawn
    */
-  public Rectangle(RectangularHitbox hitbox, Color color, boolean fill) {
+  public Rectangle(RectangularHitbox hitbox, Color color, boolean doFill) {
     this.hitbox = hitbox;
     this.color = color;
-    this.fill = fill;
+    this.doFill = doFill;
   }
 
   /** @return the rectangle's hitbox */
@@ -49,20 +49,20 @@ public class Rectangle {
   }
 
   /** @return whether is rectangle is to be filled */
-  public boolean isFill() {
-    return fill;
+  public boolean isDoFill() {
+    return doFill;
   }
 
   /**
    * Sets whether the rectangle is to be filled.
    *
-   * @param fill the new value
+   * @param doFill the new value
    */
-  public void setFill(boolean fill) {
-    this.fill = fill;
+  public void setDoFill(boolean doFill) {
+    this.doFill = doFill;
   }
 
   public Rectangle copy() {
-    return new Rectangle(hitbox.copy(), new Color(color.getRGB()), fill);
+    return new Rectangle(hitbox.copy(), new Color(color.getRGB()), doFill);
   }
 }
