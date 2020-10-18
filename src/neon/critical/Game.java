@@ -3,9 +3,9 @@ package neon.critical;
 import java.awt.Graphics;
 
 /**
- * An interface containing a tick and render method which are necessary to make a functioning game.
+ * An interface containing methods which allow the game library to interact with the game.
  */
-public interface IGame {
+public interface Game {
   /** A method called when the game starts. */
   void init();
 

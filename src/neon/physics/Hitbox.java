@@ -1,6 +1,6 @@
 package neon.physics;
 
-/** An interface for hitboxes. */
+/** An abstract class for hitboxes. */
 public abstract class Hitbox {
   protected Vector2D center;
 

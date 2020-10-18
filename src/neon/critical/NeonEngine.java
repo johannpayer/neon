@@ -23,7 +23,7 @@ public class NeonEngine extends Canvas implements Runnable {
   private static GameSettings settings;
   private static boolean doLoop = true;
   private static JFrame frame;
-  private IGame game;
+  private Game game;
 
   /**
    * Creates a window for the game and initializes the engine.
@@ -31,7 +31,7 @@ public class NeonEngine extends Canvas implements Runnable {
    * @param game a class which implements the IGame interface and contains the main logic of a game
    * @param settings the basic settings used for a game
    */
-  public static void init(IGame game, GameSettings settings) {
+  public static void init(Game game, GameSettings settings) {
     if (settings.doCreateWindow) {
       if (settings.doMaximize) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
