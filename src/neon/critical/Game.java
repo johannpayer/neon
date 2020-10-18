@@ -2,9 +2,7 @@ package neon.critical;
 
 import java.awt.Graphics;
 
-/**
- * An interface containing methods which allow the game library to interact with the game.
- */
+/** An interface containing methods which allow the game library to interact with the game. */
 public interface Game {
   /** A method called when the game starts. */
   void init();

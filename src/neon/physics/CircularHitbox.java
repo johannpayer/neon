@@ -4,53 +4,53 @@ import neon.rendering.Units;
 
 /** A class used to simulate the physics and interactions of circular hitboxes. */
 public class CircularHitbox extends Hitbox {
+  /** The radius of the circle in width units. */
   private double radius;
-  private double width;
-  private double height;
 
+  /**
+   * @param center the center of the hitbox
+   * @param radius the radius of the hitbox in width units
+   */
   public CircularHitbox(Vector2D center, double radius) {
     this.center = center;
     this.radius = radius;
   }
 
   public double getLowerXBound() {
-    return center.getX() - width / 2;
+    return center.getX() - getWidth() / 2;
   }
 
   public void setLowerXBound(double bound) {
-    center.setX(bound + width / 2);
+    center.setX(bound + getWidth() / 2);
   }
 
   public double getHigherXBound() {
-    return center.getX() + width / 2;
+    return center.getX() + getWidth() / 2;
   }
 
   public void setHigherXBound(double bound) {
-    center.setX(bound - width / 2);
+    center.setX(bound - getWidth() / 2);
   }
 
   public double getLowerYBound() {
-    return center.getY() - height / 2;
+    return center.getY() - getHeight() / 2;
   }
 
   public void setLowerYBound(double bound) {
-    center.setY(bound + height / 2);
+    center.setY(bound + getHeight() / 2);
   }
 
   public double getHigherYBound() {
-    return center.getY() + height / 2;
+    return center.getY() + getHeight() / 2;
   }
 
   public void setHigherYBound(double bound) {
-    center.setY(bound - height / 2);
+    center.setY(bound - getHeight() / 2);
   }
 
-  public double getWidth() {
-    return width;
-  }
-
-  public double getHeight() {
-    return height;
+  /** @return the radius of the hitbox in width units */
+  public double getRadiusWidth() {
+    return radius;
   }
 
   /**
@@ -60,8 +60,11 @@ public class CircularHitbox extends Hitbox {
    */
   public void setRadiusWidth(double radius) {
     this.radius = radius;
-    width = radius * 2;
-    height = Units.toHeight(width);
+  }
+
+  /** @return the radius of the hitbox in height units */
+  public double getRadiusHeight() {
+    return Units.toHeight(radius);
   }
 
   /**
@@ -71,8 +74,14 @@ public class CircularHitbox extends Hitbox {
    */
   public void setRadiusHeight(double radius) {
     this.radius = Units.toWidth(radius);
-    width = this.radius * 2;
-    height = radius * 2;
+  }
+
+  public double getWidth() {
+    return radius * 2;
+  }
+
+  public double getHeight() {
+    return Units.toHeight(getWidth());
   }
 
   public boolean containsVector(Vector2D vector) {
