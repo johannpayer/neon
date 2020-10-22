@@ -3,9 +3,7 @@ package neon.critical;
 /** A class that stores data about the game's settings. */
 public class GameSettings {
   public final String title;
-  public final boolean doFullscreen;
-  public final boolean doMaximize;
-  public final boolean isUndecorated;
+  public final WindowOption windowOption;
   public final double tickRate;
   public final double frameRate;
   public final boolean doSleepThread;
@@ -16,9 +14,7 @@ public class GameSettings {
 
   /**
    * @param title the title of the window
-   * @param doFullscreen whether the window should be fullscreen
-   * @param isUndecorated whether the window should be decorated
-   * @param doMaximize whether the window should be maximized
+   * @param windowOption additional window settings
    * @param width the width of the window in pixels
    * @param height the height of the window in pixels
    * @param tickRate the number of ticks per second
@@ -30,9 +26,7 @@ public class GameSettings {
    */
   public GameSettings(
       String title,
-      boolean doFullscreen,
-      boolean isUndecorated,
-      boolean doMaximize,
+      WindowOption windowOption,
       int width,
       int height,
       double tickRate,
@@ -41,9 +35,7 @@ public class GameSettings {
       int bufferCount,
       boolean doCreateWindow) {
     this.title = title;
-    this.doFullscreen = doFullscreen;
-    this.isUndecorated = isUndecorated;
-    this.doMaximize = doMaximize;
+    this.windowOption = windowOption;
     this.width = width;
     this.height = height;
     this.tickRate = tickRate;

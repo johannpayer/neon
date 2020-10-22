@@ -33,7 +33,7 @@ public class NeonEngine extends Canvas implements Runnable {
    */
   public static void init(Game game, GameSettings settings) {
     if (settings.doCreateWindow) {
-      if (settings.doMaximize) {
+      if (settings.windowOption.doMaximize) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         settings.setDimensions(screenSize.width, screenSize.height);
       }
@@ -45,12 +45,12 @@ public class NeonEngine extends Canvas implements Runnable {
       frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       GraphicsDevice graphicsDevice =
           GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-      if (settings.doFullscreen
+      if (settings.windowOption.doFullscreen
           && GeneralUtils.getOSType() == OsType.MAC_OS
           && graphicsDevice.isFullScreenSupported()) {
         graphicsDevice.setFullScreenWindow(frame);
       }
-      frame.setUndecorated(settings.isUndecorated);
+      frame.setUndecorated(settings.windowOption.doFullscreen);
       frame.setResizable(false);
       frame.pack();
       frame.setVisible(true);

@@ -5,5 +5,5 @@ public enum OsType {
   WINDOWS,
   MAC_OS,
   LINUX,
-  OTHER
+  OTHER,
 }
