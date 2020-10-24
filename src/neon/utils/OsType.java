@@ -1,6 +1,6 @@
 package neon.utils;
 
-/** An enumeration containing values of different types of operating systems. */
+/** An enum containing values of different types of operating systems. */
 public enum OsType {
   WINDOWS,
   MAC_OS,

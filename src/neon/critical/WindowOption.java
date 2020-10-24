@@ -1,6 +1,6 @@
 package neon.critical;
 
-/** An enumeration containing several window setting options */
+/** An enum containing several window setting options. */
 public enum WindowOption {
   NONE(false, false),
   MAXIMIZE(false, true),

@@ -3,7 +3,7 @@ package neon.rendering;
 import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
 
-/** A class that converts width and height units. */
+/** A class used to convert between units. */
 public class Units {
   /**
    * Converts height units to width units.

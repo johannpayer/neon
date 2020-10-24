@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 import neon.physics.RectangularHitbox;
 import neon.physics.Vector2D;
 
-/** A class containing a Hitbox, String, and Font property. */
+/** A class used for representing text game objects. */
 public class TextObject {
   public final RectangularHitbox hitbox;
   public final double descent;
