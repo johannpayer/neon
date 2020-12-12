@@ -1,7 +1,7 @@
 package neon.rendering;
 
-import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
+import neon.critical.WindowSettings;
 
 /** A class used to convert between units. */
 public class Units {
@@ -12,8 +12,8 @@ public class Units {
    * @return the respective width units
    */
   public static double toWidth(double height) {
-    GameSettings settings = NeonEngine.getSettings();
-    return height * settings.getWidth() / settings.getHeight();
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    return height * settings.width / settings.height;
   }
 
   /**
@@ -23,8 +23,8 @@ public class Units {
    * @return the respective height units
    */
   public static double toHeight(double width) {
-    GameSettings settings = NeonEngine.getSettings();
-    return width * settings.getWidth() / settings.getHeight();
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    return width * settings.height / settings.width;
   }
 
   /**
@@ -34,7 +34,7 @@ public class Units {
    * @return the respective width units
    */
   public static double toPixelWidth(double pixels) {
-    return pixels / NeonEngine.getSettings().getWidth();
+    return pixels / NeonEngine.getSettings().windowSettings.width;
   }
 
   /**
@@ -44,6 +44,6 @@ public class Units {
    * @return the respective height units
    */
   public static double toPixelHeight(double pixels) {
-    return pixels / NeonEngine.getSettings().getHeight();
+    return pixels / NeonEngine.getSettings().windowSettings.height;
   }
 }

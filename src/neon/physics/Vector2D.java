@@ -1,8 +1,8 @@
 package neon.physics;
 
 import java.awt.Point;
-import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
+import neon.critical.WindowSettings;
 
 /** A two-dimensional vector with two values: x and y. */
 public class Vector2D {
@@ -20,8 +20,8 @@ public class Vector2D {
 
   /** WARNING: Do not call this method. It is only to be called by core library classes. */
   public void convertCoordinateSystem() {
-    GameSettings settings = NeonEngine.getSettings();
-    divide(settings.getWidth(), settings.getHeight());
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    divide(settings.width, settings.height);
     y = 1 - y;
   }
 

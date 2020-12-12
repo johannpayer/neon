@@ -1,8 +1,8 @@
 package neon.physics;
 
 import java.awt.image.BufferedImage;
-import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
+import neon.critical.WindowSettings;
 import neon.utils.GeneralUtils;
 
 /** A class used to simulate the physics and interactions of rectangular hitboxes. */
@@ -17,10 +17,10 @@ public class RectangularHitbox extends Hitbox {
   }
 
   public RectangularHitbox(Vector2D center, BufferedImage image, double scale) {
-    GameSettings settings = NeonEngine.getSettings();
     this.center = center;
-    width = image.getWidth() * scale / settings.getWidth();
-    height = image.getHeight() * scale / settings.getHeight();
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    width = image.getWidth() * scale / settings.width;
+    height = image.getHeight() * scale / settings.height;
   }
 
   public double getLowerXBound() {

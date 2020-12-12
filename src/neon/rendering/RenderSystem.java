@@ -2,8 +2,8 @@ package neon.rendering;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import neon.critical.GameSettings;
 import neon.critical.NeonEngine;
+import neon.critical.WindowSettings;
 import neon.physics.Hitbox;
 import neon.physics.RectangularHitbox;
 
@@ -22,9 +22,9 @@ public class RenderSystem {
     }
 
     RectangularHitbox hitbox = rectangle.getHitbox();
-    GameSettings settings = NeonEngine.getSettings();
-    int width = settings.getWidth();
-    int height = settings.getHeight();
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    int width = settings.width;
+    int height = settings.height;
     int[] parameters =
         new int[] {
           (int) Math.round(hitbox.getLowerXBound() * width),
@@ -59,9 +59,9 @@ public class RenderSystem {
    */
   public static void drawImage(Graphics graphics, ImageObject imgObj) {
     Hitbox hitbox = imgObj.getHitbox();
-    GameSettings settings = NeonEngine.getSettings();
-    int width = settings.getWidth();
-    int height = settings.getHeight();
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    int width = settings.width;
+    int height = settings.height;
     graphics.drawImage(
         imgObj.getSprite(),
         (int) Math.round(hitbox.getLowerXBound() * width),
@@ -93,15 +93,15 @@ public class RenderSystem {
     graphics.setFont(textObj.font);
     graphics.setColor(textObj.getColor());
 
-    GameSettings settings = NeonEngine.getSettings();
-    int width = settings.getWidth();
-    int height = settings.getHeight();
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
     graphics.drawString(
         textObj.text,
-        (int) Math.round(textObj.hitbox.getLowerXBound() * width),
+        (int) Math.round(textObj.hitbox.getLowerXBound() * settings.width),
         (int)
             Math.round(
-                reverseY((textObj.hitbox.getCenter().getY() - textObj.descent * 1.5) * height)));
+                reverseY(
+                    (textObj.hitbox.getCenter().getY() - textObj.descent * 1.5)
+                        * settings.height)));
   }
 
   /**
@@ -128,7 +128,6 @@ public class RenderSystem {
   }
 
   private static double reverseY(double y) {
-    GameSettings settings = NeonEngine.getSettings();
-    return settings.getHeight() - y;
+    return NeonEngine.getSettings().windowSettings.height - y;
   }
 }

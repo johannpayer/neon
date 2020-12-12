@@ -7,7 +7,6 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -32,30 +31,27 @@ public class NeonEngine extends Canvas implements Runnable {
    * @param settings the basic settings used for a game
    */
   public static void init(Game game, GameSettings settings) {
-    if (settings.doCreateWindow) {
-      if (settings.windowOption.doMaximize) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        settings.setDimensions(screenSize.width, screenSize.height);
-      }
-      instance.setPreferredSize(new Dimension(settings.getWidth(), settings.getHeight()));
+    WindowSettings windowSettings = settings.windowSettings;
+    if (windowSettings != null) {
+      instance.setPreferredSize(new Dimension(windowSettings.width, windowSettings.height));
       instance.requestFocus();
 
-      frame = new JFrame(settings.title);
+      frame = new JFrame(windowSettings.title);
       frame.add(instance);
       frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       GraphicsDevice graphicsDevice =
           GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-      if (settings.windowOption.doFullscreen
+      if (windowSettings.windowOption.doFullscreen
           && GeneralUtils.getOSType() == OsType.MAC_OS
           && graphicsDevice.isFullScreenSupported()) {
         graphicsDevice.setFullScreenWindow(frame);
       }
-      frame.setUndecorated(settings.windowOption.doFullscreen);
+      frame.setUndecorated(windowSettings.windowOption.doFullscreen);
       frame.setResizable(false);
       frame.pack();
       frame.setVisible(true);
 
-      instance.createBufferStrategy(settings.getBufferCount());
+      instance.createBufferStrategy(windowSettings.bufferCount);
     }
 
     Runtime.getRuntime()
@@ -104,7 +100,7 @@ public class NeonEngine extends Canvas implements Runnable {
    * @param frame the frame
    */
   public static void setFrame(JFrame frame) {
-    if (!settings.doCreateWindow) {
+    if (NeonEngine.frame == null) {
       NeonEngine.frame = frame;
     }
   }
@@ -120,7 +116,7 @@ public class NeonEngine extends Canvas implements Runnable {
     try {
       updateInput();
 
-      // Init timing
+      // Initialize timing
       double initialTime = System.nanoTime();
       double tickDelta = 0;
       double frameDelta = 0;
@@ -128,9 +124,9 @@ public class NeonEngine extends Canvas implements Runnable {
       while (doLoop) {
         // Handle timing
         double currentTime = System.nanoTime();
-        double difference = currentTime - initialTime;
-        tickDelta += difference / (1e9 / settings.tickRate);
-        frameDelta += difference / (1e9 / settings.frameRate);
+        double secondDifference = (currentTime - initialTime) / 1e9;
+        tickDelta += secondDifference * settings.tickRate;
+        frameDelta += secondDifference * settings.frameRate;
         initialTime = currentTime;
 
         if (tickDelta >= 1) {
@@ -166,12 +162,15 @@ public class NeonEngine extends Canvas implements Runnable {
     updateInput();
 
     // Render
-    if (settings.doCreateWindow) {
+    if (settings.windowSettings != null) {
       BufferStrategy bufferStrategy = getBufferStrategy();
       Graphics graphics = bufferStrategy.getDrawGraphics();
       do {
         try {
-          graphics.clearRect(0, 0, settings.getWidth(), settings.getHeight());
+          WindowSettings windowSettings = settings.windowSettings;
+          if (windowSettings.doClearFrames) {
+            graphics.clearRect(0, 0, windowSettings.width, windowSettings.height);
+          }
           game.render(graphics);
         } finally {
           assert graphics != null;
