@@ -3,6 +3,7 @@ package neon.critical;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+/** A class that stores data about the window's settings. */
 public class WindowSettings {
   public final String title;
   public final WindowOption windowOption;
