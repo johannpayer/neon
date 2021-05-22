@@ -13,7 +13,7 @@ public class Units {
    */
   public static double toWidth(double height) {
     WindowSettings settings = NeonEngine.getSettings().windowSettings;
-    return height * settings.width / settings.height;
+    return height * settings.height / settings.width;
   }
 
   /**
@@ -24,7 +24,7 @@ public class Units {
    */
   public static double toHeight(double width) {
     WindowSettings settings = NeonEngine.getSettings().windowSettings;
-    return width * settings.height / settings.width;
+    return width * settings.width / settings.height;
   }
 
   /**
