@@ -2,37 +2,41 @@ package neon.rendering;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
 import neon.critical.NeonEngine;
 import neon.critical.WindowSettings;
 import neon.physics.Hitbox;
-import neon.physics.RectangularHitbox;
 
 /** A class used to render graphics. */
 public class RenderSystem {
+  private static int[] initDrawShape(Graphics graphics, DrawableShape shape) {
+    Color color = shape.color;
+    if (color != null) {
+      graphics.setColor(color);
+    }
+
+    Hitbox hitbox = shape.hitbox;
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    int width = settings.width;
+    int height = settings.height;
+
+    return new int[] {
+      (int) Math.round(hitbox.getLowerXBound() * width),
+      (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
+      (int) Math.round(hitbox.getWidth() * width),
+      (int) Math.round(hitbox.getHeight() * height)
+    };
+  }
+
   /**
    * Draws a rectangle.
    *
    * @param graphics the graphics object used to draw the game's graphics
    * @param rectangle the rectangle to be drawn
    */
-  public static void drawRectangle(Graphics graphics, Rectangle rectangle) {
-    Color color = rectangle.getColor();
-    if (color != null) {
-      graphics.setColor(color);
-    }
-
-    RectangularHitbox hitbox = rectangle.getHitbox();
-    WindowSettings settings = NeonEngine.getSettings().windowSettings;
-    int width = settings.width;
-    int height = settings.height;
-    int[] parameters =
-        new int[] {
-          (int) Math.round(hitbox.getLowerXBound() * width),
-          (int) Math.round(reverseY(hitbox.getHigherYBound() * height)),
-          (int) Math.round(hitbox.getWidth() * width),
-          (int) Math.round(hitbox.getHeight() * height)
-        };
-    if (rectangle.isDoFill()) {
+  public static void drawRectangle(Graphics graphics, DrawableShape rectangle) {
+    int[] parameters = initDrawShape(graphics, rectangle);
+    if (rectangle.doFill()) {
       graphics.fillRect(parameters[0], parameters[1], parameters[2], parameters[3]);
     } else {
       graphics.drawRect(parameters[0], parameters[1], parameters[2], parameters[3]);
@@ -45,9 +49,36 @@ public class RenderSystem {
    * @param graphics the graphics object used to draw the game's graphics
    * @param rectangle the rectangle to be drawn
    */
-  public static void smartDrawRectangle(Graphics graphics, Rectangle rectangle) {
-    if (isHitboxInView(rectangle.getHitbox())) {
+  public static void smartDrawRectangle(Graphics graphics, DrawableShape rectangle) {
+    if (isHitboxInView(rectangle.hitbox)) {
       drawRectangle(graphics, rectangle);
+    }
+  }
+
+  /**
+   * Draws a circle.
+   *
+   * @param graphics the graphics object used to draw the game's graphics
+   * @param circle the rectangle to be drawn
+   */
+  public static void drawCircle(Graphics graphics, DrawableShape circle) {
+    int[] parameters = initDrawShape(graphics, circle);
+    if (circle.doFill()) {
+      graphics.fillArc(parameters[0], parameters[1], parameters[2], parameters[3], 0, 360);
+    } else {
+      graphics.drawArc(parameters[0], parameters[1], parameters[2], parameters[3], 0, 360);
+    }
+  }
+
+  /**
+   * Draws a circle if it is in view.
+   *
+   * @param graphics the graphics object used to draw the game's graphics
+   * @param circle the rectangle to be drawn
+   */
+  public static void smartDrawCircle(Graphics graphics, DrawableShape circle) {
+    if (isHitboxInView(circle.hitbox)) {
+      drawCircle(graphics, circle);
     }
   }
 

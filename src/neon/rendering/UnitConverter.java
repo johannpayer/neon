@@ -4,7 +4,7 @@ import neon.critical.NeonEngine;
 import neon.critical.WindowSettings;
 
 /** A class used to convert between units. */
-public class Units {
+public class UnitConverter {
   /**
    * Converts height units to width units.
    *

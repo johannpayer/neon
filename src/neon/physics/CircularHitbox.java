@@ -1,6 +1,6 @@
 package neon.physics;
 
-import neon.rendering.Units;
+import neon.rendering.UnitConverter;
 
 /** A class used to simulate the physics and interactions of circular hitboxes. */
 public class CircularHitbox extends Hitbox {
@@ -64,7 +64,7 @@ public class CircularHitbox extends Hitbox {
 
   /** @return the radius of the hitbox in height units */
   public double getRadiusHeight() {
-    return Units.toHeight(radius);
+    return UnitConverter.toHeight(radius);
   }
 
   /**
@@ -73,7 +73,7 @@ public class CircularHitbox extends Hitbox {
    * @param radius the new radius
    */
   public void setRadiusHeight(double radius) {
-    this.radius = Units.toWidth(radius);
+    this.radius = UnitConverter.toWidth(radius);
   }
 
   public double getWidth() {
@@ -81,12 +81,13 @@ public class CircularHitbox extends Hitbox {
   }
 
   public double getHeight() {
-    return Units.toHeight(getWidth());
+    return UnitConverter.toHeight(getWidth());
   }
 
   public boolean containsVector(Vector2D vector) {
     Vector2D difference = center.safeSubtract(vector);
-    return Math.sqrt(Math.pow(difference.getX(), 2) + Math.pow(Units.toWidth(difference.getY()), 2))
+    return Math.sqrt(
+            Math.pow(difference.getX(), 2) + Math.pow(UnitConverter.toWidth(difference.getY()), 2))
         <= radius;
   }
 
@@ -96,7 +97,7 @@ public class CircularHitbox extends Hitbox {
    * @param other the other hitbox
    * @throws UnsupportedOperationException always
    */
-  public boolean unintersect(Hitbox other) throws UnsupportedOperationException {
+  public boolean doesIntersectHitbox(Hitbox other) throws UnsupportedOperationException {
     throw new UnsupportedOperationException("This method is not currently implemented.");
   }
 
@@ -106,7 +107,7 @@ public class CircularHitbox extends Hitbox {
    * @param other the other hitbox
    * @throws UnsupportedOperationException always
    */
-  public boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException {
+  public boolean preventIntersection(Hitbox other) throws UnsupportedOperationException {
     throw new UnsupportedOperationException("This method is not currently implemented.");
   }
 

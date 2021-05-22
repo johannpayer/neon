@@ -95,7 +95,7 @@ public abstract class Hitbox {
    * @param other the other hitbox
    * @return whether the current hitbox intersects the specified hitbox
    */
-  public abstract boolean intersectsHitbox(Hitbox other) throws UnsupportedOperationException;
+  public abstract boolean doesIntersectHitbox(Hitbox other) throws UnsupportedOperationException;
 
   /**
    * Shifts the hitbox in order to prevent it from intersecting with another hitbox. When shifting,
@@ -104,7 +104,7 @@ public abstract class Hitbox {
    * @param other the other hitbox
    * @return whether the hitboxes collided
    */
-  public abstract boolean unintersect(Hitbox other) throws UnsupportedOperationException;
+  public abstract boolean preventIntersection(Hitbox other) throws UnsupportedOperationException;
 
   /** @return a copy of the object */
   public abstract Hitbox copy();

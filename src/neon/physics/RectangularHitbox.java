@@ -86,8 +86,17 @@ public class RectangularHitbox extends Hitbox {
         && GeneralUtils.isWithinRange(vector.getY(), getLowerYBound(), getHigherYBound());
   }
 
-  public boolean unintersect(Hitbox other) {
-    boolean intersects = intersectsHitbox(other);
+  public boolean doesIntersectHitbox(Hitbox other) {
+    assert other instanceof RectangularHitbox;
+    Vector2D difference = center.safeSubtract(other.getCenter());
+    return Math.abs(difference.getX())
+            < GeneralUtils.getAverage(new double[] {width, other.getWidth()})
+        && Math.abs(difference.getY())
+            < GeneralUtils.getAverage(new double[] {height, other.getHeight()});
+  }
+
+  public boolean preventIntersection(Hitbox other) {
+    boolean intersects = doesIntersectHitbox(other);
     if (intersects) {
       Vector2D difference = center.safeSubtract(other.getCenter());
       if (Math.abs(difference.getX()) >= Math.abs(difference.getY())) {
@@ -104,15 +113,6 @@ public class RectangularHitbox extends Hitbox {
     }
 
     return intersects;
-  }
-
-  public boolean intersectsHitbox(Hitbox other) {
-    assert other instanceof RectangularHitbox;
-    Vector2D difference = center.safeSubtract(other.getCenter());
-    return Math.abs(difference.getX())
-            < GeneralUtils.getAverage(new double[] {width, other.getWidth()})
-        && Math.abs(difference.getY())
-            < GeneralUtils.getAverage(new double[] {height, other.getHeight()});
   }
 
   public RectangularHitbox copy() {

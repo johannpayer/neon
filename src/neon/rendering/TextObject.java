@@ -32,8 +32,10 @@ public class TextObject {
     Rectangle2D size = metrics.getStringBounds(text, graphics);
     hitbox =
         new RectangularHitbox(
-            position, Units.toPixelWidth(size.getWidth()), Units.toPixelHeight(size.getHeight()));
-    descent = Units.toPixelHeight(metrics.getDescent());
+            position,
+            UnitConverter.toPixelWidth(size.getWidth()),
+            UnitConverter.toPixelHeight(size.getHeight()));
+    descent = UnitConverter.toPixelHeight(metrics.getDescent());
   }
 
   /** @return the object's color */
