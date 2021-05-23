@@ -33,9 +33,9 @@ public class TextObject {
     hitbox =
         new RectangularHitbox(
             position,
-            UnitConverter.toPixelWidth(size.getWidth()),
-            UnitConverter.toPixelHeight(size.getHeight()));
-    descent = UnitConverter.toPixelHeight(metrics.getDescent());
+            UnitConverter.toWidthFromPixels(size.getWidth()),
+            UnitConverter.toHeightFromPixels(size.getHeight()));
+    descent = UnitConverter.toHeightFromPixels(metrics.getDescent());
   }
 
   /** @return the object's color */

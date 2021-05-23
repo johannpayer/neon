@@ -33,7 +33,7 @@ public class UnitConverter {
    * @param pixels the length in pixels
    * @return the respective width units
    */
-  public static double toPixelWidth(double pixels) {
+  public static double toWidthFromPixels(double pixels) {
     return pixels / NeonEngine.getSettings().windowSettings.width;
   }
 
@@ -43,7 +43,7 @@ public class UnitConverter {
    * @param pixels the length in pixels
    * @return the respective height units
    */
-  public static double toPixelHeight(double pixels) {
+  public static double toHeightFromPixels(double pixels) {
     return pixels / NeonEngine.getSettings().windowSettings.height;
   }
 }
