@@ -7,5 +7,5 @@
 *.ipr
 *.iws
 *.xml
-/bin/
-/out/
+bin
+out
