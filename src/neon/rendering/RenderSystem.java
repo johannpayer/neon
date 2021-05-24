@@ -9,6 +9,19 @@ import neon.physics.Hitbox;
 
 /** A class used to render graphics. */
 public class RenderSystem {
+  /**
+   * Fills the screen with a background color.
+   *
+   * @param graphics the graphics object used to draw the game's graphics
+   * @param color the color the background should be
+   */
+  public static void fillBackgroundColor(Graphics graphics, Color color) {
+    graphics.setColor(color);
+
+    WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    graphics.fillRect(0, 0, settings.width, settings.height);
+  }
+
   private static int[] initDrawShape(Graphics graphics, DrawableShape shape) {
     Color color = shape.color;
     if (color != null) {
