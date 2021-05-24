@@ -81,7 +81,7 @@ public class RectangularHitbox extends Hitbox {
     this.height = height;
   }
 
-  public boolean containsVector(Vector2D vector) {
+  public boolean doesContainVector(Vector2D vector) {
     return GeneralUtils.isWithinRange(vector.getX(), getLowerXBound(), getHigherXBound())
         && GeneralUtils.isWithinRange(vector.getY(), getLowerYBound(), getHigherYBound());
   }

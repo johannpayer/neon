@@ -68,7 +68,7 @@ public abstract class Hitbox {
    * @param vector the specified vector
    * @return whether the hitbox contains the vector
    */
-  public abstract boolean containsVector(Vector2D vector);
+  public abstract boolean doesContainVector(Vector2D vector);
 
   /**
    * Shifts the hitbox so that it fits within the specified bounds.
