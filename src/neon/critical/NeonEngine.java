@@ -8,6 +8,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.image.BufferStrategy;
+import java.io.Serial;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import neon.input.InputSystem;
@@ -17,7 +18,7 @@ import neon.utils.OsType;
 
 /** The main class for the Neon Game Library. */
 public class NeonEngine extends Canvas implements Runnable {
-  private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
   private static final NeonEngine instance = new NeonEngine();
   private static GameSettings settings;
   private static boolean doLoop = true;
