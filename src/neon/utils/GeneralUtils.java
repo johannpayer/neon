@@ -166,7 +166,7 @@ public class GeneralUtils {
   }
 
   /**
-   * Checks whether a noun should use its singular or plural form and returns the correct one.
+   * Formats a quantity.
    *
    * @param number the quantity of the noun
    * @param singular the singular form of the word
@@ -174,13 +174,14 @@ public class GeneralUtils {
    * @param doInclude whether the result should include the number
    * @return the correct form
    */
-  public static String pluralCheck(int number, String singular, String plural, boolean doInclude) {
+  public static String formatQuantity(
+      int number, String singular, String plural, boolean doInclude) {
     String output = number == 1 ? singular : plural;
     return doInclude ? number + " " + output : output;
   }
 
   /**
-   * Checks whether a noun should use its singular or plural form and returns the correct one.
+   * Formats a quantity.
    *
    * @param number the quantity of the noun
    * @param singular the singular form of the word
@@ -188,7 +189,7 @@ public class GeneralUtils {
    * @param doInclude whether the result should include the number
    * @return the correct form
    */
-  public static String pluralCheck(
+  public static String formatQuantity(
       double number, String singular, String plural, boolean doInclude) {
     String output = number == 1 ? singular : plural;
     return doInclude ? number + " " + output : output;
