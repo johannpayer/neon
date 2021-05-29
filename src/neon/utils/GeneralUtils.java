@@ -1,5 +1,6 @@
 package neon.utils;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -193,5 +194,27 @@ public class GeneralUtils {
       double number, String singular, String plural, boolean doIncludeNumber) {
     String output = number == 1 ? singular : plural;
     return doIncludeNumber ? number + " " + output : output;
+  }
+
+  /**
+   * Changes a color's opacity.
+   *
+   * @param color the original color
+   * @param opacity the new opacity
+   * @return an identical color with the specified opacity
+   */
+  public static Color changeColorOpacity(Color color, int opacity) {
+    return new Color(color.getRed(), color.getGreen(), color.getBlue(), opacity);
+  }
+
+  /**
+   * Changes a color's opacity.
+   *
+   * @param color the original color
+   * @param opacity the new opacity
+   * @return an identical color with the specified opacity
+   */
+  public static Color changeColorOpacity(Color color, float opacity) {
+    return changeColorOpacity(color, Math.round(opacity * 255));
   }
 }
