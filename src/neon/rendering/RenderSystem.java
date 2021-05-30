@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import neon.critical.NeonEngine;
 import neon.critical.WindowSettings;
 import neon.physics.Hitbox;
+import neon.physics.RectangularHitbox;
 
 /** A class used to render graphics. */
 public class RenderSystem {
@@ -134,18 +135,18 @@ public class RenderSystem {
    * @param textObj the text to be drawn
    */
   public static void drawText(Graphics graphics, TextObject textObj) {
-    graphics.setFont(textObj.font);
+    graphics.setFont(textObj.getFont());
     graphics.setColor(textObj.getColor());
 
     WindowSettings settings = NeonEngine.getSettings().windowSettings;
+    RectangularHitbox hitbox = textObj.getHitbox();
     graphics.drawString(
-        textObj.text,
-        (int) Math.round(textObj.hitbox.getLowerXBound() * settings.width),
+        textObj.getText(),
+        (int) Math.round(hitbox.getLowerXBound() * settings.width),
         (int)
             Math.round(
                 reverseY(
-                    (textObj.hitbox.getCenter().getY() - textObj.descent * 1.5)
-                        * settings.height)));
+                    (hitbox.getCenter().getY() - textObj.getDescent() * 1.5) * settings.height)));
   }
 
   /**
@@ -155,7 +156,7 @@ public class RenderSystem {
    * @param textObj the text to be drawn
    */
   public static void smartDrawText(Graphics graphics, TextObject textObj) {
-    if (isHitboxInView(textObj.hitbox)) {
+    if (isHitboxInView(textObj.getHitbox())) {
       drawText(graphics, textObj);
     }
   }
