@@ -3,6 +3,7 @@ package neon.physics;
 import java.awt.Point;
 import neon.critical.NeonEngine;
 import neon.critical.WindowSettings;
+import neon.rendering.UnitConverter;
 
 /** A two-dimensional vector with two values: x and y. */
 public class Vector2D {
@@ -51,6 +52,19 @@ public class Vector2D {
    */
   public void setY(double y) {
     this.y = y;
+  }
+
+  /** @return the scalar of the vector in width units */
+  public double getScalar() {
+    return Math.sqrt(Math.pow(x, 2) + Math.pow(UnitConverter.toWidth(y), 2));
+  }
+
+  /**
+   * @param other the second vector
+   * @return the distance between the two vectors in width units
+   */
+  public double getDistanceBetween(Vector2D other) {
+    return safeSubtract(other).getScalar();
   }
 
   /**
