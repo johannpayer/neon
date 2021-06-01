@@ -89,12 +89,16 @@ public class CircularHitbox extends Hitbox {
   }
 
   /**
-   * WARNING: This method is unimplemented.
+   * WARNING: This method is partially unimplemented. It only works when used with other circular hitboxes.
    *
    * @param other the other hitbox
    * @throws UnsupportedOperationException always
    */
   public boolean doesIntersectHitbox(Hitbox other) throws UnsupportedOperationException {
+    if (other instanceof CircularHitbox castedOther) {
+      return center.getDistanceBetween(other.center) <= castedOther.radius + radius;
+    }
+
     throw new UnsupportedOperationException("This method is not currently implemented.");
   }
 
