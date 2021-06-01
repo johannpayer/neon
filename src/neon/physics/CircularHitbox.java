@@ -85,10 +85,7 @@ public class CircularHitbox extends Hitbox {
   }
 
   public boolean doesContainVector(Vector2D vector) {
-    Vector2D difference = center.safeSubtract(vector);
-    return Math.sqrt(
-            Math.pow(difference.getX(), 2) + Math.pow(UnitConverter.toWidth(difference.getY()), 2))
-        <= radius;
+    return center.getDistanceBetween(vector) <= radius;
   }
 
   /**
