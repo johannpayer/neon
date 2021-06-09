@@ -19,13 +19,6 @@ public class TextObject {
   private Color color;
   private HitboxAlignment alignment;
 
-  private void init(Graphics graphics, Vector2D position, String text, Font font, Color color) {
-    this.position = position;
-    this.font = font;
-    this.color = color;
-    setText(graphics, text);
-  }
-
   /**
    * @param graphics the graphics object used to determine the size of the text
    * @param position the position of the text
@@ -53,6 +46,13 @@ public class TextObject {
       HitboxAlignment alignment) {
     this.alignment = alignment;
     init(graphics, position, text, font, color);
+  }
+
+  private void init(Graphics graphics, Vector2D position, String text, Font font, Color color) {
+    this.position = position;
+    this.font = font;
+    this.color = color;
+    setText(graphics, text);
   }
 
   private void updateHitbox(Graphics graphics) {

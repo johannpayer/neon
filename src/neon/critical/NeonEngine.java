@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 import java.io.Serial;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+
 import neon.input.InputSystem;
 import neon.physics.Vector2D;
 import neon.utils.GeneralUtils;

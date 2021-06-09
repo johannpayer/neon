@@ -22,13 +22,11 @@ public class GeneralUtils {
     if (detectedOs == null) {
       String osName = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
       detectedOs =
-        osName.contains("mac") || osName.contains("darwin")
-        ? OsType.MAC_OS
-        : osName.contains("win")
-        ? OsType.WINDOWS
-        : osName.contains("nux")
-        ? OsType.LINUX
-        : OsType.OTHER;
+          osName.contains("mac") || osName.contains("darwin")
+              ? OsType.MAC_OS
+              : osName.contains("win")
+                  ? OsType.WINDOWS
+                  : osName.contains("nux") ? OsType.LINUX : OsType.OTHER;
     }
 
     return detectedOs;
