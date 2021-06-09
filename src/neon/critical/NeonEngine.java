@@ -43,7 +43,7 @@ public class NeonEngine extends Canvas implements Runnable {
       GraphicsDevice graphicsDevice =
           GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
       if (windowSettings.windowOption.doFullscreen
-          && GeneralUtils.getOSType() == OsType.MAC_OS
+          && GeneralUtils.getOsType() == OsType.MAC_OS
           && graphicsDevice.isFullScreenSupported()) {
         graphicsDevice.setFullScreenWindow(frame);
       }

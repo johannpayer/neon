@@ -15,23 +15,23 @@ import javax.imageio.ImageIO;
 
 /** A class used to perform many miscellaneous operations. */
 public class GeneralUtils {
-  private static OsType detectedOS;
+  private static OsType detectedOs;
 
   /** @return an enumeration specifying the operating system type */
-  public static OsType getOSType() {
-    if (detectedOS == null) {
-      String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
-      if ((OS.contains("mac")) || (OS.contains("darwin"))) {
-        detectedOS = OsType.MAC_OS;
-      } else if (OS.contains("win")) {
-        detectedOS = OsType.WINDOWS;
-      } else if (OS.contains("nux")) {
-        detectedOS = OsType.LINUX;
-      } else {
-        detectedOS = OsType.OTHER;
-      }
+  public static OsType getOsType() {
+    if (detectedOs == null) {
+      String osName = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+      detectedOs =
+        osName.contains("mac") || osName.contains("darwin")
+        ? OsType.MAC_OS
+        : osName.contains("win")
+        ? OsType.WINDOWS
+        : osName.contains("nux")
+        ? OsType.LINUX
+        : OsType.OTHER;
     }
-    return detectedOS;
+
+    return detectedOs;
   }
 
   /**
