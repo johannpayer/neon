@@ -177,18 +177,10 @@ public class InputSystem {
   public static class MouseInput extends MouseAdapter {
     private static void setMouseButtonHeld(MouseButtonType type, boolean value) {
       switch (type) {
-        case LEFT:
-          isLeftMouseButtonHeld = value;
-          break;
-        case MIDDLE:
-          isMiddleMouseButtonHeld = value;
-          break;
-        case RIGHT:
-          isRightMouseButtonHeld = value;
-          break;
-        case OTHER:
-          isOtherMouseButtonHeld = value;
-          break;
+        case LEFT -> isLeftMouseButtonHeld = value;
+        case MIDDLE -> isMiddleMouseButtonHeld = value;
+        case RIGHT -> isRightMouseButtonHeld = value;
+        case OTHER -> isOtherMouseButtonHeld = value;
       }
     }
 
